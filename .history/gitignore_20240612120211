@@ -1,0 +1,3 @@
+#fichiers non envoyés sur gitignore
+config.php
+/vender

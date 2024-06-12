@@ -1,0 +1,6 @@
+#fichiers non envoyés sur gitignore
+config.php
+
+# vendor contient les librairies
+
+/vender
