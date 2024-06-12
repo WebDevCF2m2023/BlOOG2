@@ -1,0 +1,4 @@
+# Ignore config file
+config.php
+# vendor contient les librairies externes en PHP
+/vendor
