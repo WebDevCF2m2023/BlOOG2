@@ -21,10 +21,10 @@ USE `bloog` ;
 DROP TABLE IF EXISTS `bloog`.`permission` ;
 
 CREATE TABLE IF NOT EXISTS `bloog`.`permission` (
-  `persmission_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `permission_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `permission_name` VARCHAR(45) NOT NULL,
   `permission_description` VARCHAR(300) NULL,
-  PRIMARY KEY (`persmission_id`))
+  PRIMARY KEY (`permission_id`))
 ENGINE = InnoDB;
 
 
@@ -41,11 +41,11 @@ CREATE TABLE IF NOT EXISTS `bloog`.`user` (
   `user_mail` VARCHAR(180) NOT NULL,
   `user_status` TINYINT UNSIGNED NOT NULL DEFAULT 0 COMMENT '0 pas actif\n1 actif\n2 banni',
   `user_secret_key` VARCHAR(80) NOT NULL,
-  `permission_persmission_id` INT UNSIGNED NOT NULL,
+  `permission_permission_id` INT UNSIGNED NOT NULL,
   PRIMARY KEY (`user_id`),
   CONSTRAINT `fk_user_permission`
-    FOREIGN KEY (`permission_persmission_id`)
-    REFERENCES `bloog`.`permission` (`persmission_id`)
+    FOREIGN KEY (`permission_permission_id`)
+    REFERENCES `bloog`.`permission` (`permission_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -54,7 +54,7 @@ CREATE UNIQUE INDEX `user_login_UNIQUE` ON `bloog`.`user` (`user_login` ASC) VIS
 
 CREATE UNIQUE INDEX `user_mail_UNIQUE` ON `bloog`.`user` (`user_mail` ASC) VISIBLE;
 
-CREATE INDEX `fk_user_permission_idx` ON `bloog`.`user` (`permission_persmission_id` ASC) VISIBLE;
+CREATE INDEX `fk_user_permission_idx` ON `bloog`.`user` (`permission_permission_id` ASC) VISIBLE;
 
 
 -- -----------------------------------------------------
@@ -65,7 +65,7 @@ DROP TABLE IF EXISTS `bloog`.`article` ;
 CREATE TABLE IF NOT EXISTS `bloog`.`article` (
   `article_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `article_title` VARCHAR(160) NOT NULL,
-  `article_slug` VARCHAR(160) NOT NULL,
+  `article_slug` VARCHAR(165) NOT NULL,
   `article_text` TEXT NOT NULL,
   `article_date_create` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
   `article_date_update` TIMESTAMP NULL,
@@ -93,8 +93,8 @@ DROP TABLE IF EXISTS `bloog`.`category` ;
 CREATE TABLE IF NOT EXISTS `bloog`.`category` (
   `category_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `category_name` VARCHAR(100) NOT NULL,
-  `category_slug` VARCHAR(100) NOT NULL,
-  `category_description` VARCHAR(300) NULL,
+  `category_slug` VARCHAR(105) NOT NULL,
+  `category_description` VARCHAR(500) NULL,
   `category_parent` INT UNSIGNED NULL DEFAULT 0,
   PRIMARY KEY (`category_id`))
 ENGINE = InnoDB;
