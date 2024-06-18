@@ -198,24 +198,17 @@ CREATE INDEX `fk_comment_has_user_comment1_idx` ON `bloog`.`comment_has_user` (`
 
 
 -- -----------------------------------------------------
--- Table `bloog`.`image`
+-- Table `bloog`.`file`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `bloog`.`image` ;
+DROP TABLE IF EXISTS `bloog`.`file` ;
 
-CREATE TABLE IF NOT EXISTS `bloog`.`image` (
-  `image_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
-  `image_url` VARCHAR(60) NOT NULL,
-  `image_description` VARCHAR(150) NULL,
-  `article_article_id` INT UNSIGNED NOT NULL,
-  PRIMARY KEY (`image_id`),
-  CONSTRAINT `fk_image_article1`
-    FOREIGN KEY (`article_article_id`)
-    REFERENCES `bloog`.`article` (`article_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+CREATE TABLE IF NOT EXISTS `bloog`.`file` (
+  `file_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `file_url` VARCHAR(60) NOT NULL,
+  `file_description` VARCHAR(150) NULL,
+  `file_type` VARCHAR(6) NOT NULL,
+  PRIMARY KEY (`file_id`))
 ENGINE = InnoDB;
-
-CREATE INDEX `fk_image_article1_idx` ON `bloog`.`image` (`article_article_id` ASC) VISIBLE;
 
 
 -- -----------------------------------------------------
@@ -256,6 +249,32 @@ ENGINE = InnoDB;
 CREATE INDEX `fk_tag_has_article_article1_idx` ON `bloog`.`tag_has_article` (`article_article_id` ASC) VISIBLE;
 
 CREATE INDEX `fk_tag_has_article_tag1_idx` ON `bloog`.`tag_has_article` (`tag_tag_id` ASC) VISIBLE;
+
+
+-- -----------------------------------------------------
+-- Table `bloog`.`file_has_article`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `bloog`.`file_has_article` ;
+
+CREATE TABLE IF NOT EXISTS `bloog`.`file_has_article` (
+  `file_file_id` INT UNSIGNED NOT NULL,
+  `article_article_id` INT UNSIGNED NOT NULL,
+  PRIMARY KEY (`file_file_id`, `article_article_id`),
+  CONSTRAINT `fk_file_has_article_file1`
+    FOREIGN KEY (`file_file_id`)
+    REFERENCES `bloog`.`file` (`file_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_file_has_article_article1`
+    FOREIGN KEY (`article_article_id`)
+    REFERENCES `bloog`.`article` (`article_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+CREATE INDEX `fk_file_has_article_article1_idx` ON `bloog`.`file_has_article` (`article_article_id` ASC) VISIBLE;
+
+CREATE INDEX `fk_file_has_article_file1_idx` ON `bloog`.`file_has_article` (`file_file_id` ASC) VISIBLE;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
