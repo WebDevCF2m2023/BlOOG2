@@ -1,3 +1,9 @@
+<<<<<<< HEAD
+# Ignore config file
+config.php
+# vendor contient les librairies externes en PHP
+/vendor
+=======
 # fichers non envoyés
 config.php
 # vendor contient les libairies externes en php
@@ -5,4 +11,4 @@ config.php
 # PHPStorm
 .idea
 
-.history
+>>>>>>> main
