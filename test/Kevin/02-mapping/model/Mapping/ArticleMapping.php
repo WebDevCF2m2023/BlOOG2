@@ -118,4 +118,9 @@ class ArticleMapping extends AbstractMapping
     {
         $this->article_text = $article_text;
     }
+
+    public function __toString(): string
+    {
+        return "article_title";
+    }
 }
