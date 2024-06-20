@@ -1,7 +1,7 @@
 <?php
 
 namespace model\Mapping;
-
+use model\Abstract\AbstractMapping;
 use Exception;
 
 class FileMapping
