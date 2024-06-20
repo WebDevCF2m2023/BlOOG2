@@ -4,5 +4,4 @@ config.php
 /vendor
 # PHPStorm
 .idea
-
 .history
