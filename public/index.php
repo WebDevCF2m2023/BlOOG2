@@ -15,15 +15,7 @@ spl_autoload_register(function ($class) {
     require PROJECT_DIRECTORY.'/' .$class . '.php';
 });
 
-<<<<<<< HEAD
-echo PROJECT_DIRECTORY. "<br>"
-
-
-
-
-
-=======
-// on peu utilisé l'ecritire longue pour appeler une classe
+// on peu utilisé l'ecriture longue pour appeler une classe
 // via
 $tag1 = new \model\Mapping\MappingTag([
     'tag_id' => 8,
@@ -51,4 +43,3 @@ var_dump($tag1)($tag2);
 
 
 //exemple : $test = newClasse();
->>>>>>> bac4788fa99b6a5856a0668ddaae3ffc1b070b00
