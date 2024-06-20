@@ -31,9 +31,11 @@ abstract class AbstractMapping
             if (method_exists($this, $methodeName)) {
                 // on hydrate le paramètre avec la valeur
                 $this->$methodeName($value);
+            }else{
+                echo "$methodeName n'est pas un stter valide<br>";
+            }
             }
         }
     }
 
     
-}
