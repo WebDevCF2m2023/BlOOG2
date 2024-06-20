@@ -40,9 +40,4 @@ $tag3 = new MappingTag([
     'Argggg_ho_tempo' => 164862,
 ]);
 
-$tag4 = new MappingTag([
-    "tag_id"=>15,
-    "tag_slug"=>"pomme de terre"
-]);
-
-var_dump($tag1, $tag2, $tag3, $tag4);
+var_dump($tag1,$tag2,$tag3);
