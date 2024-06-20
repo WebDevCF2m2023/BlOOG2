@@ -16,8 +16,8 @@ echo PROJECT_DIRECTORY."<br>";
 
 // on peut utiliser l'écriture longue pour appeler une classe
 // via l'autoload en utilisant son namespace
-$tag1 = new \model\Mapping\MappingTag([
-    'tag_id' => 7,
+$tag1 = new model\Mapping\MappingTag([
+    'tag_id' => 1,
     'tag_slug' => "php-8",
     "Je m'amuse beaucoup !"=>"14",
     "Nimporte_Quoi"=>"yep",
