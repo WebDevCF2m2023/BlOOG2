@@ -35,5 +35,6 @@ abstract class AbstractMapping
         }
     }
     
-    
+    // Méthode abstraite à déclarer dans tous les enfants de AbstractMapping
+    abstract public function __toString():string;
 }
