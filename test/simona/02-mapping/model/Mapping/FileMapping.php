@@ -56,4 +56,8 @@ class FileMapping
     {
         $this->file_type = $file_type;
     }
+    public function __toString(): string
+    {
+        return "Cette instance est créée par ".self::class;
+    }
 }

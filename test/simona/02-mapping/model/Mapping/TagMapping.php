@@ -2,7 +2,7 @@
 
 namespace model\Mapping;
 use model\Abstract\AbstractMapping;
-use model\Trait\TraitDateTime;
+use model\Trait\TraitSlugify;
 use Exception;
 
 class TagMapping
@@ -36,5 +36,9 @@ class TagMapping
        
         $text = htmlspecialchars(trim(strip_tags($tag_slug)), ENT_QUOTES);
         $this->tag_slug = $text;
+    }
+    public function __toString(): string
+    {
+        return "Cette instance est créée par ".self::class;
     }
 }
