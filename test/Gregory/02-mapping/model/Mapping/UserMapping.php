@@ -14,6 +14,7 @@ CREATE TABLE IF NOT EXISTS `bloog`.`user` (
 namespace model\Mapping;
 
 use model\Abstract\AbstractMapping;
+use Exception;
 
 class UserMapping extends AbstractMapping
 {
@@ -53,7 +54,7 @@ class UserMapping extends AbstractMapping
     }
     //setters
     public function setUserId(int $user_id){
-        if ($user_id < 0)throw new \Exception("ID non valide");
+        if ($user_id < 0)throw new Exception("ID non valide");
         $this->user_id = $user_id;
     }
     public function setUserLogin(string $user_login){
