@@ -36,6 +36,6 @@ abstract class AbstractMapping
             }
         }
     }
-//methode abstraite a declarer dans toutes les enfants de abstractMapping
-    abstract public function_toString():string;
+
+    
 }
