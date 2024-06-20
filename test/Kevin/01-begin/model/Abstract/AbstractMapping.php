@@ -37,5 +37,6 @@ abstract class AbstractMapping
         }
     }
 
+    abstract public function __toString(): string;
     
 }

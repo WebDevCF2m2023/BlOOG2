@@ -21,4 +21,10 @@ $tag1 = new MappingTag([
     'tag_id'=> 7,
     'tag_slug'=> 'php-8',
 ]);
-var_dump($tag1);
+
+$tag2 = new MappingTag([
+    'tag_id' => 15,
+    'tag_slug' => 'Slug moi oui vas y'
+]);
+echo $tag2;
+var_dump($tag1, $tag2);
