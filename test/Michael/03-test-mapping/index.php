@@ -8,6 +8,7 @@ spl_autoload_register(function ($class) {
 
 use model\Mapping\ArticleMapping;
 use model\Mapping\CategoryMapping;
+use model\Mapping\CommentMapping;
 
 ?>
 <!doctype html>
@@ -48,6 +49,22 @@ use model\Mapping\CategoryMapping;
         "category_parent" => 0
     ]);
     var_dump($category1);
+    ?>
+    <h2>Table Comment</h2>
+    <p>Test de model/Mapping/CommentMapping.php</p>
+    <?php
+    $comment1 = new CommentMapping([
+        "comment_id" => 1,
+        "comment_text" => "Texte du commentaire",
+        "comment_parent" => 0,
+        "comment_date_create" => "2021-09-01 12:00:00",
+        "comment_date_update" => "2023-09-01 12:00:00",
+        "comment_date_publish" => new DateTime(),
+        "comment_is_published" => true,
+        "user_user_id" => 1,
+        "article_article_id" => 1
+    ]);
+    var_dump($comment1);
     ?>
 </body>
 </html>
