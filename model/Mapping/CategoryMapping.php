@@ -3,28 +3,26 @@
 namespace model\Mapping;
 
 use model\Abstract\AbstractMapping;
-use model\Trait\TraitDateTime;
+use model\Trait\TraitSlugify;
 use Exception;
+
 
 class CategoryMapping extends AbstractMapping
 {
     // Les propriétés de la classe sont le nom des
     // attributs de la table Exemple (qui serait en
     // base de données)
-    protected ?int $category_id;
-    protected ?string $category_name;
-    protected ?string $category_slug;
-    protected string $category_description;
-    protected int $category_parent;
+    protected ?int $category_id=null;
+    protected ?string $category_name=null;
+    protected ?string $category_slug=null;
+    protected ?string $category_description=null;
+    protected ?int $category_parent=null;
 
+    // On utilise le trait Slugify pour générer un slug
+    use TraitSlugify;
 
     // Les getters et setters
-    // Les getters permettent de récupérer la valeur
-    // d'un attribut de la classe
 
-    // Les setters permettent de modifier la valeur
-    // d'un attribut de la classe, en utilisant l'hydratation
-    // venant de la classe AbstractMapping
     public function getCategoryId(): ?int
     {
         return $this->category_id;
@@ -38,15 +36,15 @@ class CategoryMapping extends AbstractMapping
 
     public function getCategoryName(): ?string
     {
-        // décryptage
-        return html_entity_decode($this->category_name);
-        // return $this->exemple_name;
+
+        return $this->category_name;
+
     }
 
     public function setCategoryName(?string $category_name): void
     {
-        // cryptage
-        $text = htmlspecialchars(trim(strip_tags($category_name)),ENT_QUOTES);
+
+        $text = trim(strip_tags($category_name));
         $this->category_name = $text;
     }
 
@@ -57,7 +55,7 @@ class CategoryMapping extends AbstractMapping
 
     public function setCategorySlug(?string $category_slug): void
     {
-        $this->category_slug = $category_slug;
+        $this->category_slug = $this->slugify($category_slug);
     }
 
     public function getCategoryDescription(): ?string

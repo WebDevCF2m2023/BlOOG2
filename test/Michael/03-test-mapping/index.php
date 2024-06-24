@@ -7,6 +7,7 @@ spl_autoload_register(function ($class) {
 });
 
 use model\Mapping\ArticleMapping;
+use model\Mapping\CategoryMapping;
 
 ?>
 <!doctype html>
@@ -35,6 +36,18 @@ use model\Mapping\ArticleMapping;
         "user_user_id" => 1
     ]);
     var_dump($article1);
+    ?>
+    <h2>Table Category</h2>
+    <p>Test de model/Mapping/CategoryMapping.php</p>
+    <?php
+    $category1 = new CategoryMapping([
+        "category_id" => 1,
+        "category_name" => "Nom de la catégorie",
+        "category_slug" => "nom-de-la-categorie",
+        "category_description" => "Description de la catégorie",
+        "category_parent" => 0
+    ]);
+    var_dump($category1);
     ?>
 </body>
 </html>
