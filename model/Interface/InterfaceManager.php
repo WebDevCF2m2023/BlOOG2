@@ -3,7 +3,6 @@
 namespace model\Interface;
 
 use PDO;
-use Exception;
 
 interface InterfaceManager
 {

@@ -23,19 +23,20 @@ abstract class AbstractMapping
 
             // création du nom d'un setter (méthode publique de modification)
             $tab = explode("_", $key);
-            $majuscule = array_map('ucfirst',$tab);
+            $majuscule = array_map('ucfirst', $tab);
             $newNameCamelCase = implode($majuscule);
             $methodeName = "set" . $newNameCamelCase;
-            
+
             // si la méthode existe
             if (method_exists($this, $methodeName)) {
                 // on hydrate le paramètre avec la valeur
                 $this->$methodeName($value);
-            }else{
-                echo "$methodeName n'est pas un stter valide<br>";
-            }
+            } else {
+                // sinon, on affiche un message d'erreur (à commenter en prod)
+                echo "$methodeName n'est pas un setter valide<br>";
             }
         }
     }
+}
 
     

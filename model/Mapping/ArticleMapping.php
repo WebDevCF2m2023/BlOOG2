@@ -75,12 +75,12 @@ class ArticleMapping extends AbstractMapping
 
     public function getArticleTitle(): ?string
     {
-        return html_entity_decode($this->article_title);
+        return $this->article_title;
     }
 
     public function setArticleTitle(?string $article_title): void
     {
-        $article_title = htmlspecialchars(trim(strip_tags($article_title)),ENT_QUOTES);
+        $article_title = trim(strip_tags($article_title));
         $this->article_title = $article_title;
     }
 
