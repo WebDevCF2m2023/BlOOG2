@@ -3,6 +3,7 @@
 namespace model\Manager ;
 
 use Exception;
+use model\Abstract\AbstractMapping;
 use model\Interface\InterfaceManager;
 use model\Mapping\CommentMapping;
 use PDO;
@@ -84,19 +85,22 @@ class CommentManager implements InterfaceManager{
     }
 
     // mise à jour d'un commentaire
-    public function update(object $object): bool|string
+    public function update(AbstractMapping $mapping): bool|string
     {
 
+        if (!($mapping instanceof CommentMapping)) {                    
+            throw new Exception('L\'objet doit être une instance de CommentMapping'); 
+        }
         // requête préparée
         $sql = "UPDATE `comment` SET `comment_text`=?, `comment_date_update`=? WHERE `comment_id`=?";
         // mise à jour de la date de modification
-        $object->setCommentDateUpdate(date("Y-m-d H:i:s"));
+        $mapping->setCommentDateUpdate(date("Y-m-d H:i:s"));
         $prepare = $this->connect->prepare($sql);
 
         try{
-            $prepare->bindValue(1,$object->getCommentText());
-            $prepare->bindValue(2,$object->getCommentDateUpdate());
-            $prepare->bindValue(3,$object->getCommentId(), PDO::PARAM_INT);
+            $prepare->bindValue(1,$mapping->getCommentText());
+            $prepare->bindValue(2,$mapping->getCommentDateUpdate());
+            $prepare->bindValue(3,$mapping->getCommentId(), PDO::PARAM_INT);
 
             $prepare->execute();
 
@@ -112,15 +116,18 @@ class CommentManager implements InterfaceManager{
 
 
     // insertion d'un commentaire - À modifier !
-    public function insert(object $object): bool|string
+    public function insert(AbstractMapping $mapping): bool|string
     {
+        if (!($mapping instanceof CommentMapping)) {                    
+            throw new Exception('L\'objet doit être une instance de CommentMapping'); 
+        }
 
         // requête préparée
         $sql = "INSERT INTO `comment`(`comment_text`, `user_user_id`, `article_article_id` )  VALUES (?,1,1)";
         $prepare = $this->connect->prepare($sql);
 
         try{
-            $prepare->bindValue(1,$object->getCommentText());
+            $prepare->bindValue(1,$mapping->getCommentText());
 
             $prepare->execute();
 

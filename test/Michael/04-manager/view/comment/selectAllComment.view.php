@@ -24,6 +24,7 @@
     <p><?=$item->getCommentDateCreate()?></p><hr>
         <?php
         endforeach;
+        var_dump($selectAllComments);
     endif;
         ?>
     </div>
