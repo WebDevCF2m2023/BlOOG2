@@ -2,5 +2,5 @@
 
 interface InterfaceSlugManager
 {
-    public function selectOneBySlug(string $slug): object;
+    public function selectOneBySlug(string $slug);
 }
