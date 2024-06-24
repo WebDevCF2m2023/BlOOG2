@@ -40,6 +40,26 @@ use model\Mapping\UserMapping;
         "article_is_published" => true,
         "user_user_id" => 1
     ]);
+    echo "<h3>getters de article</h3><p>";
+    echo $article1->getArticleId();
+    echo "<br>";
+    echo $article1->getArticleTitle();
+    echo "<br>";
+    echo $article1->getArticleSlug();
+    echo "<br>";
+    echo $article1->getArticleText();
+    echo "<br>";
+    echo $article1->getArticleDateCreate();
+    echo "<br>";
+    echo $article1->getArticleDateUpdate();
+    echo "<br>";
+    echo $article1->getArticleDatePublish();
+    echo "<br>";
+    echo $article1->getArticleIsPublished();
+    echo "<br>";
+    echo $article1->getUserUserId();
+    echo "</p>";
+
     var_dump($article1);
     ?>
     <h2>Table Category</h2>
@@ -52,6 +72,17 @@ use model\Mapping\UserMapping;
         "category_description" => "Description de la catégorie",
         "category_parent" => 0
     ]);
+    echo "<h3>getters de category</h3><p>";
+    echo $category1->getCategoryId();
+    echo "<br>";
+    echo $category1->getCategoryName();
+    echo "<br>";
+    echo $category1->getCategorySlug();
+    echo "<br>";
+    echo $category1->getCategoryDescription();
+    echo "<br>";
+    echo $category1->getCategoryParent();
+    echo "</p>";
     var_dump($category1);
     ?>
     <h2>Table Comment</h2>
@@ -68,6 +99,25 @@ use model\Mapping\UserMapping;
         "user_user_id" => 1,
         "article_article_id" => 1
     ]);
+    echo "<h3>getters de comment</h3><p>";
+    echo $comment1->getCommentId();
+    echo "<br>";
+    echo $comment1->getCommentText();
+    echo "<br>";
+    echo $comment1->getCommentParent();
+    echo "<br>";
+    echo $comment1->getCommentDateCreate();
+    echo "<br>";
+    echo $comment1->getCommentDateUpdate();
+    echo "<br>";
+    echo $comment1->getCommentDatePublish();
+    echo "<br>";
+    echo $comment1->getCommentIsPublished();
+    echo "<br>";
+    echo $comment1->getUserUserId();
+    echo "<br>";
+    echo $comment1->getArticleArticleId();
+    echo "</p>";
     var_dump($comment1);
     ?>
     <h2>Table File</h2>
@@ -79,6 +129,15 @@ use model\Mapping\UserMapping;
         "file_description" => "Description du fichier",
         "file_type" => "png",
     ]);
+    echo "<h3>getters de file</h3><p>";
+    echo $file1->getFileId();
+    echo "<br>";
+    echo $file1->getFileUrl();
+    echo "<br>";
+    echo $file1->getFileDescription();
+    echo "<br>";
+    echo $file1->getFileType();
+    echo "</p>";
     var_dump($file1);
     ?>
     <h2>Table Permission</h2>
@@ -89,6 +148,13 @@ use model\Mapping\UserMapping;
         "permission_name" => "Nom de la permission",
         "permission_description" => "Description de la permission",
     ]);
+    echo "<h3>getters de permission</h3><p>";
+    echo $permission1->getPermissionId();
+    echo "<br>";
+    echo $permission1->getPermissionName();
+    echo "<br>";
+    echo $permission1->getPermissionDescription();
+    echo "</p>";
     var_dump($permission1);
     ?>
     <h2>Table Tag</h2>
@@ -97,8 +163,12 @@ use model\Mapping\UserMapping;
     $tag1 = new TagMapping([
         "tag_id" => 1,
         "tag_slug" => "nom du tag",
-        "tag_description" => "Description du tag",
     ]);
+    echo "<h3>getters de tag</h3><p>";
+    echo $tag1->getTagId();
+    echo "<br>";
+    echo $tag1->getTagSlug();
+    echo "</p>";
     var_dump($tag1);
     ?>
     <h2>Table User</h2>
@@ -113,8 +183,24 @@ use model\Mapping\UserMapping;
         "user_status" => 1,
         "user_secret_key" => "secret 123",
         "permission_permission_id" => 1
-
     ]);
+    echo "<h3>getters de user</h3><p>";
+    echo $user1->getUserId();
+    echo "<br>";
+    echo $user1->getUserLogin();
+    echo "<br>";
+    echo $user1->getUserPassword();
+    echo "<br>";
+    echo $user1->getUserFullName();
+    echo "<br>";
+    echo $user1->getUserMail();
+    echo "<br>";
+    echo $user1->getUserStatus();
+    echo "<br>";
+    echo $user1->getUserSecretKey();
+    echo "<br>";
+    echo $user1->getPermissionPermissionId();
+    echo "</p>";
     var_dump($user1);
     ?>
 </body>
