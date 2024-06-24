@@ -12,15 +12,15 @@ class CommentMapping extends AbstractMapping
     // Les propriétés de la classe sont le nom des
     // attributs de la table Exemple (qui serait en
     // base de données)
-    protected ?int $comment_id;
-    protected ?string $comment_text;
-    protected ?int $comment_parent;
-    protected null|string|DateTime $comment_date_create;
-    protected null|string|DateTime $comment_date_update;
-    protected null|string|DateTime $comment_date_publish;
-    protected bool $comment_is_published = false;
-    protected ?string $user_user_id;
-    protected ?int $article_article_id;
+    protected ?int $comment_id=null;
+    protected ?string $comment_text=null;
+    protected ?int $comment_parent=null;
+    protected null|string|DateTime $comment_date_create=null;
+    protected null|string|DateTime $comment_date_update=null;
+    protected null|string|DateTime $comment_date_publish=null;
+    protected ?bool $comment_is_published = false;
+    protected ?int $user_user_id=null;
+    protected ?int $article_article_id=null;
 
     
 
@@ -28,12 +28,7 @@ class CommentMapping extends AbstractMapping
     use TraitDateTime;
 
     // Les getters et setters
-    // Les getters permettent de récupérer la valeur
-    // d'un attribut de la classe
 
-    // Les setters permettent de modifier la valeur
-    // d'un attribut de la classe, en utilisant l'hydratation
-    // venant de la classe AbstractMapping
     public function getCommentId(): ?int
     {
         return $this->comment_id;
@@ -47,15 +42,15 @@ class CommentMapping extends AbstractMapping
 
     public function getCommentText(): ?string
     {
-        // décryptage
-        return html_entity_decode($this->comment_text);
+
+        return $this->comment_text;
        
     }
 
     public function setCommentText(?string $comment_text): void
     {
         // cryptage
-        $text = htmlspecialchars(trim(strip_tags($comment_text)),ENT_QUOTES);
+        $text = trim(strip_tags($comment_text));
         $this->comment_text = $text;
     }
 
@@ -84,9 +79,6 @@ class CommentMapping extends AbstractMapping
     }
 
 
-
-
-
     public function getCommentDateUpdate(): null|string|DateTime
     {
         return $this->comment_date_update;
@@ -98,9 +90,6 @@ class CommentMapping extends AbstractMapping
         $this->formatDateTime($comment_date_update, "comment_date_update");
 
     }
-
-
-
 
 
     public function getCommentDatePublish(): null|string|DateTime
@@ -116,14 +105,12 @@ class CommentMapping extends AbstractMapping
     }
 
 
-
-
-    public function getCommentIsPublished(): bool
+    public function getCommentIsPublished(): ?bool
     {
         return $this->comment_is_published;
     }
 
-    public function setCommentIsPublished(bool $comment_is_published): void
+    public function setCommentIsPublished(?bool $comment_is_published): void
     {
         $this->comment_is_published = $comment_is_published;
     }
