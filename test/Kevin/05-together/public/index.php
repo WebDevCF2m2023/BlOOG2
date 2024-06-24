@@ -2,7 +2,8 @@
 
 // session
 
-use model\Mapping\MappingTag;
+use model\Manager\PermissionManager;
+use model\Mapping\PermissionMapping;
 
 session_start();
 
@@ -15,7 +16,16 @@ spl_autoload_register(function ($class) {
     require PROJECT_DIRECTORY.'/' .$class . '.php';
 });
 
-// our router
+// PDO connection
+$dbConnect = new PDO( DB_TYPE.":host=".DB_HOST.";dbname=".DB_NAME.";port=".DB_PORT.";charset=".DB_CHARSET,
+DB_LOGIN,
+DB_PWD);
 
-?>
-<h1>Accueil</h1>
+// Instanciation du Manager de Permission
+$permissionManager = new PermissionManager($dbConnect);
+
+// homepage
+$allPermission = $permissionManager->selectAll();
+
+// vue
+require PROJECT_DIRECTORY . '/view/permission/permission.homepage.view.php';
