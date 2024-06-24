@@ -9,6 +9,7 @@ spl_autoload_register(function ($class) {
 use model\Mapping\ArticleMapping;
 use model\Mapping\CategoryMapping;
 use model\Mapping\CommentMapping;
+use model\Mapping\FileMapping;
 
 ?>
 <!doctype html>
@@ -65,6 +66,17 @@ use model\Mapping\CommentMapping;
         "article_article_id" => 1
     ]);
     var_dump($comment1);
+    ?>
+    <h2>Table File</h2>
+    <p>Test de model/Mapping/FileMapping.php</p>
+    <?php
+    $file1 = new FileMapping([
+        "file_id" => 1,
+        "file_url" => "https://trello-logos.s3.amazonaws.com/c3f2bef1693561dfb24e0f00aa592c80/30.png",
+        "file_description" => "Description du fichier",
+        "file_type" => "png",
+    ]);
+    var_dump($file1);
     ?>
 </body>
 </html>

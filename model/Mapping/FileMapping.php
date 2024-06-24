@@ -1,16 +1,17 @@
 <?php
 
 namespace model\Mapping;
+
 use model\Abstract\AbstractMapping;
 use Exception;
 
-class FileMapping
+class FileMapping extends AbstractMapping
 {
    
-    protected ?int $file_id;
-    protected ?string $file_url;
-    protected ?string $file_description;
-    protected ?string $file_type;
+    protected ?int $file_id=null;
+    protected ?string $file_url=null;
+    protected ?string $file_description=null;
+    protected ?string $file_type=null;
 
 
     public function getFileId(): ?int
@@ -33,7 +34,7 @@ class FileMapping
 
     public function setFileUrl(?string $file_url): void
     {
-        $text = htmlspecialchars(trim(strip_tags($file_url)), ENT_QUOTES);
+        $text = trim(strip_tags($file_url));
         $this->file_url = $text;
     }
 
