@@ -5,13 +5,14 @@ use model\Abstract\AbstractMapping;
 use model\Trait\TraitSlugify;
 use Exception;
 
-class TagMapping
+class TagMapping extends AbstractMapping
 {
     
-    protected ?int $tag_id;
-    protected ?string $tag_slug;
+    protected ?int $tag_id=null;
+    protected ?string $tag_slug=null;
 
 
+    use TraitSlugify;
     public function getTagId(): ?int
     {
         return $this->tag_id;
@@ -28,14 +29,13 @@ class TagMapping
     public function getTagSlug(): ?string
     {
         
-        return html_entity_decode($this->tag_slug);
+        return $this->tag_slug;
     }
 
     public function setTagSlug(?string $tag_slug): void
     {
-       
-        $text = htmlspecialchars(trim(strip_tags($tag_slug)), ENT_QUOTES);
-        $this->tag_slug = $text;
+
+        $this->tag_slug = $this->slugify($tag_slug);
     }
     public function __toString(): string
     {

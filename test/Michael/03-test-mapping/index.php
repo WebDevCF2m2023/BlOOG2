@@ -10,6 +10,8 @@ use model\Mapping\ArticleMapping;
 use model\Mapping\CategoryMapping;
 use model\Mapping\CommentMapping;
 use model\Mapping\FileMapping;
+use model\Mapping\PermissionMapping;
+use model\Mapping\TagMapping;
 
 ?>
 <!doctype html>
@@ -77,6 +79,26 @@ use model\Mapping\FileMapping;
         "file_type" => "png",
     ]);
     var_dump($file1);
+    ?>
+    <h2>Table Permission</h2>
+    <p>Test de model/Mapping/PermissionMapping.php</p>
+    <?php
+    $permission1 = new PermissionMapping([
+        "permission_id" => 1,
+        "permission_name" => "Nom de la permission",
+        "permission_description" => "Description de la permission",
+    ]);
+    var_dump($permission1);
+    ?>
+    <h2>Table Tag</h2>
+    <p>Test de model/Mapping/TagMapping.php</p>
+    <?php
+    $tag1 = new TagMapping([
+        "tag_id" => 1,
+        "tag_slug" => "nom du tag",
+        "tag_description" => "Description du tag",
+    ]);
+    var_dump($tag1);
     ?>
 </body>
 </html>
