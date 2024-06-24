@@ -10,15 +10,15 @@ use Exception;
 
 class ArticleMapping extends AbstractMapping
 {
-    protected ?int $article_id = null;
-    protected ?string $article_title = null;
-    protected ?string $article_slug = null;
-    protected ?string $article_text = null;
-    protected null|string|DateTime $article_date_create = null;
-    protected null|string|DateTime $article_date_update = null;
-    protected null|string|DateTime $article_date_publish = null;
-    protected bool $article_is_published = false;
-    protected ?int $user_user_id = null;
+    protected ?int $article_id=null;
+    protected ?string $article_title=null;
+    protected ?string $article_slug=null;
+    protected ?string $article_text=null;
+    protected null|string|DateTime $article_date_create=null;
+    protected null|string|DateTime $article_date_update=null;
+    protected null|string|DateTime $article_date_publish=null;
+    protected ?bool $article_is_published = false;
+    protected ?int $user_user_id=null;
 
     use TraitDateTime;
     use TraitSlugify;
@@ -58,29 +58,29 @@ class ArticleMapping extends AbstractMapping
         return $this->user_user_id;
     }
 
-    public function setUser_user_id(?int $user_user_id): void
+    public function setUserUserId(?int $user_user_id): void
     {
         $this->user_user_id = $user_user_id;
     }
 
-    public function getArticleIsPublished(): bool
+    public function getArticleIsPublished(): ?bool
     {
         return $this->article_is_published;
     }
 
-    public function setArticleIsPublished(bool $article_is_published): void
+    public function setArticleIsPublished(?bool $article_is_published): void
     {
         $this->article_is_published = $article_is_published;
     }
 
     public function getArticleTitle(): ?string
     {
-        return html_entity_decode($this->article_title);
+        return $this->article_title;
     }
 
-    public function setArticleTitle(string $article_title): void
+    public function setArticleTitle(?string $article_title): void
     {
-        $article_title = htmlspecialchars(trim(strip_tags($article_title)),ENT_QUOTES);
+        $article_title = trim(strip_tags($article_title));
         $this->article_title = $article_title;
     }
 
@@ -99,10 +99,6 @@ class ArticleMapping extends AbstractMapping
         return $this->article_id;
     }
 
-    /**
-     * @param $article_id must be equal or greater than 0
-     * @throws Invalide $article_id
-     */
     public function setArticleId(?int $article_id): void
     {
         if($article_id<=0 && $article_id !== null) throw new Exception("ID non valide"); 
@@ -114,7 +110,7 @@ class ArticleMapping extends AbstractMapping
         return $this->article_text;
     }
 
-    public function setArticleText(string $article_text): void
+    public function setArticleText(?string $article_text): void
     {
         $this->article_text = $article_text;
     }
@@ -123,4 +119,6 @@ class ArticleMapping extends AbstractMapping
     {
         return "article_title";
     }
+
+
 }
