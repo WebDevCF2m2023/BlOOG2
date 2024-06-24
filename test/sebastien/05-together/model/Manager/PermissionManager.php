@@ -17,6 +17,9 @@ class PermissionManager implements InterfaceManager{
     public function __construct(PDO $pdo){
         $this->db=$pdo;
     }
+
+
+    
     public function selectAll():?array
     {
         $query = $this->db->query("SELECT * FROM `permission`");
@@ -51,7 +54,7 @@ class PermissionManager implements InterfaceManager{
             // récupération des valeurs en tableau associatif
             $result = $prepare->fetch(PDO::FETCH_ASSOC);
 
-            // création de l'instance CommentMapping
+            // création de l'instance PermissionMapping
             $result = new PermissionMapping($result);
 
             $prepare->closeCursor();
@@ -89,7 +92,7 @@ try{
          $sql = "UPDATE `comment` SET `comment_text`=?, `comment_date_update`=? WHERE `comment_id`=?";
          // mise à jour de la date de modification
          $object->setCommentDateUpdate(date("Y-m-d H:i:s"));
-         $prepare = $this->connect->prepare($sql);
+         $prepare = $this->db->prepare($sql);
  
          try{
              $prepare->bindValue(1,$object->getCommentText());
@@ -111,8 +114,24 @@ try{
 
     public function delete(int $id){
         
+ // requête préparée
+        $sql = "DELETE FROM `comment` WHERE `comment_id`=?";
+        $prepare = $this->db->prepare($sql);
 
+        try{
+            $prepare->bindValue(1,$id, PDO::PARAM_INT);
+
+            $prepare->execute();
+
+            $prepare->closeCursor();
+
+            return true;
+
+        }catch(Exception $e){
+            return $e->getMessage();
+        }
+        
+    }
 
 
     }
-}
