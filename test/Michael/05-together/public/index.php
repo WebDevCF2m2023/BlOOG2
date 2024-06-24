@@ -1,10 +1,13 @@
 <?php
 
 // session
-
-use model\Mapping\MappingTag;
-
 session_start();
+
+// On indique le chemin vers des class qu'on utilisera
+use model\Mapping\PermissionMapping;
+use model\Manager\PermissionManager;
+
+
 
 // Appel de la config
 require_once "../config.php";
@@ -15,7 +18,20 @@ spl_autoload_register(function ($class) {
     require PROJECT_DIRECTORY.'/' .$class . '.php';
 });
 
-// our router
+// PDO connection
+$PDOconnect = new PDO( DB_TYPE.":host=".DB_HOST.";dbname=".DB_NAME.";port=".DB_PORT.";charset=".DB_CHARSET,
+DB_LOGIN,
+DB_PWD);
 
-?>
-<h1>Accueil</h1>
+// instanciation du manager de permission
+// avec notre connexion PDO
+$permissionManager = new PermissionManager($PDOconnect);
+
+
+//homepage
+$allPermission = $permissionManager->selectAll();
+
+// vue
+require PROJECT_DIRECTORY."/view/permission/permission.homepage.view.php";
+
+//var_dump($allPermission,$permissionManager);
