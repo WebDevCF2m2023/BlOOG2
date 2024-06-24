@@ -3,7 +3,7 @@
 // Espace de nom (isolation du code)
 namespace model\Abstract;
 
-// Classe abstraite qui ne peut être instanciée.
+// Classe abstrait qui ne peut être instanciée
 // Elle est la base de tous les mappings de tables
 abstract class AbstractMapping
 {
@@ -31,11 +31,10 @@ abstract class AbstractMapping
             if (method_exists($this, $methodeName)) {
                 // on hydrate le paramètre avec la valeur
                 $this->$methodeName($value);
-            }else{
-                echo "$methodeName n'est pas un setter valide<br>";
             }
         }
     }
-
     
+    // Méthode abstraite à déclarer dans tous les enfants de AbstractMapping
+    abstract public function __toString():string;
 }
