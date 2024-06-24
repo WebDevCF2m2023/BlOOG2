@@ -18,14 +18,14 @@ use Exception;
 
 class UserMapping extends AbstractMapping
 {
-    protected ?int $user_id;
-    protected string $user_login;
-    protected string $user_password;
-    protected ?string $user_full_name;
-    protected string $user_mail;
-    protected ?int $user_status;
-    protected string $user_secret_key;
-    protected ?int $permission_permission_id;
+    protected ?int $user_id=null;
+    protected ?string $user_login=null;
+    protected ?string $user_password=null;
+    protected ?string $user_full_name=null;
+    protected ?string $user_mail=null;
+    protected ?int $user_status=null;
+    protected ?string $user_secret_key=null;
+    protected ?int $permission_permission_id=null;
 
     //getters
     public function getUserId():?int{
@@ -53,29 +53,29 @@ class UserMapping extends AbstractMapping
         return $this->permission_permission_id;
     }
     //setters
-    public function setUserId(int $user_id){
+    public function setUserId(?int $user_id){
         if ($user_id < 0)throw new Exception("ID non valide");
         $this->user_id = $user_id;
     }
-    public function setUserLogin(string $user_login){
-        $this->user_login = htmlspecialchars(trim(strip_tags($user_login)),ENT_QUOTES);
+    public function setUserLogin(?string $user_login){
+        $this->user_login = trim(strip_tags($user_login));
     }
-    public function setUserPassword(string $user_password){
-        $this->user_password = htmlspecialchars(trim(strip_tags($user_password)),ENT_QUOTES);
+    public function setUserPassword(?string $user_password){
+        $this->user_password = trim(strip_tags($user_password));
     }
-    public function setUserFullName(string $user_full_name){
-        $this->user_full_name = htmlspecialchars(trim(strip_tags($user_full_name)),ENT_QUOTES);
+    public function setUserFullName(?string $user_full_name){
+        $this->user_full_name = trim(strip_tags($user_full_name));
     }
-    public function setUserMail(string $user_mail){
-        $this->user_mail = htmlspecialchars(trim(strip_tags($user_mail)),ENT_QUOTES);
+    public function setUserMail(?string $user_mail){
+        $this->user_mail = trim(strip_tags($user_mail));
     }
-    public function setUserStatus(int $user_status){
+    public function setUserStatus(?int $user_status){
         $this->user_status = $user_status;
     }
-    public function setUserSecret_key(string $user_secret_key){
-        $this->user_secret_key = htmlspecialchars(trim(strip_tags($user_secret_key)),ENT_QUOTES);
+    public function setUserSecretKey(?string $user_secret_key){
+        $this->user_secret_key = trim(strip_tags($user_secret_key));
     }
-    public function setPermissionPermissionId(int $permission_permission_id){
+    public function setPermissionPermissionId(?int $permission_permission_id){
         $this->permission_permission_id = $permission_permission_id;
     }
 

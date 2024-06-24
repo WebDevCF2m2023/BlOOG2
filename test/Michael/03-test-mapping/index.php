@@ -12,6 +12,7 @@ use model\Mapping\CommentMapping;
 use model\Mapping\FileMapping;
 use model\Mapping\PermissionMapping;
 use model\Mapping\TagMapping;
+use model\Mapping\UserMapping;
 
 ?>
 <!doctype html>
@@ -99,6 +100,22 @@ use model\Mapping\TagMapping;
         "tag_description" => "Description du tag",
     ]);
     var_dump($tag1);
+    ?>
+    <h2>Table User</h2>
+    <p>Test de model/Mapping/UserMapping.php</p>
+    <?php
+    $user1 = new UserMapping([
+        "user_id" => 1,
+        "user_login" => "MikeTyson",
+        "user_password" => "password",
+        "user_full_name" => "Mike Tyson",
+        "user_mail" => "test@cf2m.be",
+        "user_status" => 1,
+        "user_secret_key" => "secret 123",
+        "permission_permission_id" => 1
+
+    ]);
+    var_dump($user1);
     ?>
 </body>
 </html>
