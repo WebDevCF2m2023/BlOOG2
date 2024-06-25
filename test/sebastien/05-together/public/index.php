@@ -46,7 +46,7 @@ if (isset($_GET['permission_id'])) {
 
 
 require PROJECT_DIRECTORY."/view/permission/permission.homepage.view.php";
-require PROJECT_DIRECTORY."/view/permissionview/selectOnePermission.view.php";
+require PROJECT_DIRECTORY."/view/permission/selectOnePermission.view.php";
 
 
 var_dump($permissionManager);
