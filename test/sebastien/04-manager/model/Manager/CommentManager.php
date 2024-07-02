@@ -34,7 +34,7 @@ class CommentManager implements InterfaceManager{
         $array = $select->fetchAll(PDO::FETCH_ASSOC);
 
         // on ferme le curseur
-        $select->closeCursor();-
+        $select->closeCursor();
 
         // on va stocker les commentaires dans un tableau
         $arrayComment = [];

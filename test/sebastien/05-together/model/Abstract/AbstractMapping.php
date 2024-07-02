@@ -23,7 +23,7 @@ abstract class AbstractMapping
 
             // création du nom d'un setter (méthode publique de modification)
             $tab = explode("_", $key);
-            $majuscule = array_map('ucfirst',$tab);
+            $majuscule = array_map('ucfirst', $tab);
             $newNameCamelCase = implode($majuscule);
             $methodeName = "set" . $newNameCamelCase;
 
