@@ -29,6 +29,7 @@
         <div>
             <label for="category_parent">ID du parent :</label>
             <select name="category_parent" id="category_parent">
+                <option value="0">-------------</option>
                 <?php foreach($allNamesIDCategory as $category): ?>
                     <option value="<?= $category->getCategoryId() ?>"><?= $category->getCategoryName() ?></option>
                 <?php endforeach; ?>

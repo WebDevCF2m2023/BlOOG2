@@ -34,11 +34,12 @@
                 <div>
                     <label for="category_parent">ID du parent :</label>
                     <select name="category_parent" id="category_parent">
-                    <?php foreach($allNamesIDCategory as $category): ?>
-                        <?php if($category->getCategoryId() === $selectOneCategory->getCategoryId()) continue; ?>
-                        <option <?= $category->getCategoryId() === $selectOneCategory->getCategoryParent() ? "selected" : "" ?> value="<?= $category->getCategoryId() ?>"><?= $category->getCategoryName() ?></option>
-                    <?php endforeach; ?>
-            </select>
+                        <option value="0">-------------</option>
+                        <?php foreach($allNamesIDCategory as $category): ?>
+                            <?php if($category->getCategoryId() === $selectOneCategory->getCategoryId()) continue; ?>
+                            <option <?= $category->getCategoryId() === $selectOneCategory->getCategoryParent() ? "selected" : "" ?> value="<?= $category->getCategoryId() ?>"><?= $category->getCategoryName() ?></option>
+                        <?php endforeach; ?>
+                    </select>
                 </div>
                 <input type="submit" value="Modifier">
             </form>

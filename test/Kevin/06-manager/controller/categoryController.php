@@ -8,8 +8,6 @@ use model\Mapping\CategoryMapping;
 // create category Manager
 $categoryManager = new CategoryManager($dbConnect);
 
-
-
 // detail view
 if(isset($_GET['view'])&&ctype_digit($_GET['view'])){
     $idCategory = (int) $_GET['view'];
@@ -23,9 +21,12 @@ if(isset($_GET['view'])&&ctype_digit($_GET['view'])){
 
     // real insert category
     if(isset($_POST['category_name'], $_POST['category_slug'], $_POST['category_description'], $_POST['category_parent']) && ctype_digit($_POST['category_parent'])) {
-        $categoryParent = $categoryManager->selectOneById($_POST['category_parent']);
-        $errorCategory = gettype($categoryParent) === "string";
-        if(!is_null($categoryParent) && !$errorCategory){
+        $idParent = (int) $_POST['category_parent'];
+        if($idParent !== 0){
+            $categoryParent = $categoryManager->selectOneById($_POST['category_parent']);
+            $errorCategory = gettype($categoryParent) === "string";
+        }
+        if($idParent === 0 || (!is_null($categoryParent) && !$errorCategory)){
             try{
                 // create category
                 $category = new CategoryMapping($_POST);
@@ -52,9 +53,12 @@ if(isset($_GET['view'])&&ctype_digit($_GET['view'])){
 
     // update category
     if(isset($_POST['category_name'], $_POST['category_slug'], $_POST['category_description'], $_POST['category_parent']) && ctype_digit($_POST['category_parent'])) {
-        $categoryParent = $categoryManager->selectOneById($_POST['category_parent']);
-        $errorCategory = gettype($categoryParent) === "string";
-        if(!is_null($categoryParent) && !$errorCategory){
+        $idParent = (int) $_POST['category_parent'];
+        if($idParent !== 0){
+            $categoryParent = $categoryManager->selectOneById($_POST['category_parent']);
+            $errorCategory = gettype($categoryParent) === "string";
+        }
+        if($idParent === 0 || (!is_null($categoryParent) && !$errorCategory)){
             try {
                 // create category
                 $category = new CategoryMapping($_POST);
