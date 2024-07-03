@@ -15,6 +15,8 @@
         ?>
         <?php if(is_null($selectOneCategory)): ?>
             <h3>Commentaire inexistant</h3>
+        <?php elseif(gettype($selectOneCategory) === "string"): ?>
+            <h3><?= $selectOneCategory ?></h3>
         <?php else: ?>
             <h4>ID : <?=$selectOneCategory->getCategoryId()?> <a href="?route=category&view=<?=$selectOneCategory->getCategoryId()?>">Voir ce commentaire via son id</a></h4>
             <p>Nom : <?=$selectOneCategory->getCategoryName()?></p>

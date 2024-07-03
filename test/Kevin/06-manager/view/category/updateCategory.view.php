@@ -10,39 +10,34 @@
     <div>
         <?php
         include PROJECT_DIRECTORY."/view/menu.homepage.view.php";
-
-        if(is_null($selectOneCategory)):
-            ?>
+        ?>
+        <?php if(is_null($selectOneCategory)): ?>
             <h3>Catégorie inexistant</h3>
-
-        <?php
-        else:
-        if(isset($error)) echo "<h4>$error</h4>";
-        ?>
-    <h3>Modification d'une catégorie</h3>
-    <form action="" method="post">
-    <div>
-            <label for="category_name">Catégorie</label>
-            <input type="text" name="category_name" id="category_name" value="<?= $selectOneCategory->getCategoryName() ?>" required>
-        </div>
-        <div>
-            <label for="category_slug">Slug</label>
-            <input type="text" name="category_slug" id="category_slug" value="<?= $selectOneCategory->getCategorySlug() ?>">
-        </div>
-        <div>
-            <label for="category_description">Description :</label><br>
-            <textarea name="category_description" id="category_description" cols="30" rows="10" required><?= $selectOneCategory->getCategoryDescription() ?></textarea>
-        </div>
-        <div>
-            <label for="category_parent">ID du parent :</label>
-            <input type="number" name="category_parent" id="category_parent" min="0" value="<?= $selectOneCategory->getCategoryParent() ?>">
-        </div>
-        <input type="submit" value="Modifier">
-    </form>
-        <?php
-        endif;
-        ?>
-
+        <?php elseif(gettype($selectOneCategory) === "string"): ?>
+            <h3><?= $selectOneCategory ?></h3>
+        <?php else: ?>
+            <?php if(isset($error)) echo "<h4>$error</h4>"; ?>
+            <h3>Modification d'une catégorie</h3>
+            <form action="" method="post">
+            <div>
+                    <label for="category_name">Catégorie</label>
+                    <input type="text" name="category_name" id="category_name" value="<?= $selectOneCategory->getCategoryName() ?>" required>
+                </div>
+                <div>
+                    <label for="category_slug">Slug</label>
+                    <input type="text" name="category_slug" id="category_slug" value="<?= $selectOneCategory->getCategorySlug() ?>">
+                </div>
+                <div>
+                    <label for="category_description">Description :</label><br>
+                    <textarea name="category_description" id="category_description" cols="30" rows="10" required><?= $selectOneCategory->getCategoryDescription() ?></textarea>
+                </div>
+                <div>
+                    <label for="category_parent">ID du parent :</label>
+                    <input type="number" name="category_parent" id="category_parent" min="0" value="<?= $selectOneCategory->getCategoryParent() ?>">
+                </div>
+                <input type="submit" value="Modifier">
+            </form>
+        <?php endif; ?>
     </div>
 
 </body>
