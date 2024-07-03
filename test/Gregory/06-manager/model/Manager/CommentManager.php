@@ -52,6 +52,46 @@ class CommentManager implements InterfaceManager{
         return $arrayComment;
     }
 
+    public function selectAllArticles(): ?array
+    {
+        // requête SQL
+        $sql = "SELECT * FROM `article`;";
+        // query car pas d'entrées d'utilisateur
+        $select = $this->connect->query($sql);
+
+        // si on ne récupère rien, on quitte avec un message d'erreur
+        if($select->rowCount()===0) return null;
+
+        // on transforme nos résultats en tableau associatif
+        $array = $select->fetchAll(PDO::FETCH_ASSOC);
+
+        // on ferme le curseur
+        $select->closeCursor();
+
+        // on retourne le tableau
+        return $array;
+    }
+
+    public function selectAllUser(): ?array
+    {
+        // requête SQL
+        $sql = "SELECT * FROM `user`;";
+        // query car pas d'entrées d'utilisateur
+        $select = $this->connect->query($sql);
+
+        // si on ne récupère rien, on quitte avec un message d'erreur
+        if($select->rowCount()===0) return null;
+
+        // on transforme nos résultats en tableau associatif
+        $array = $select->fetchAll(PDO::FETCH_ASSOC);
+
+        // on ferme le curseur
+        $select->closeCursor();
+
+        // on retourne le tableau
+        return $array;
+    }
+
     // récupération d'un commentaire via son id
     public function selectOneById(int $id): null|string|CommentMapping
     {
@@ -123,11 +163,13 @@ class CommentManager implements InterfaceManager{
         }
 
         // requête préparée
-        $sql = "INSERT INTO `comment`(`comment_text`, `user_user_id`, `article_article_id` )  VALUES (?,1,1)";
+        $sql = "INSERT INTO `comment`(`comment_text`, `user_user_id`, `article_article_id` )  VALUES (?,?,?)";
         $prepare = $this->connect->prepare($sql);
 
         try{
             $prepare->bindValue(1,$mapping->getCommentText());
+            $prepare->bindValue(2,$mapping->getUserUserId());
+            $prepare->bindValue(3,$mapping->getArticleArticleId());
 
             $prepare->execute();
 

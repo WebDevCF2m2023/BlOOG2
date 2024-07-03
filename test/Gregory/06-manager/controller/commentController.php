@@ -22,7 +22,7 @@ if(isset($_GET['view'])&&ctype_digit($_GET['view'])){
 }elseif(isset($_GET['insert'])){
 
 // real insert comment
-    if(isset($_POST['comment_text'])) {
+    if(isset($_POST['comment_text'], $_POST["user_user_id"], $_POST["article_article_id"])) {
         try{
             // create comment
             $comment = new CommentMapping($_POST);
@@ -44,6 +44,8 @@ if(isset($_GET['view'])&&ctype_digit($_GET['view'])){
 
     }
     // view
+    $articles = $commentManager->selectAllArticles();
+    $users = $commentManager->selectAllUser();
     require "../view/comment/insertComment.view.php";
 
 // delete comment
