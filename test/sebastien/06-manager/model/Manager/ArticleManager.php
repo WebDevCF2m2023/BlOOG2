@@ -123,18 +123,15 @@ class ArticleManager implements InterfaceManager{
         }
 
         // requête préparée
-        $sql = "INSERT INTO `article`(`article_title`,`article_text`,`article_slug`,`article_date_create`,`article_date_update`,`article_date_publish`,`article_is_published`,`user_user_id`)  VALUES (?,?,?,?,?,?,?,?)";
+        $sql = "INSERT INTO `article`(`article_title`,`article_text`,`article_slug`,`user_user_id`)  VALUES (?,?,?,?)";
         $prepare = $this->connect->prepare($sql);
 
         try{
             $prepare->bindValue(1,$mapping->getArticleTitle());
             $prepare->bindValue(2,$mapping->getArticleText());
             $prepare->bindValue(3,$mapping->getArticleSlug());
-            $prepare->bindValue(4,$mapping->getArticleDateCreate());
-            $prepare->bindValue(5,$mapping->getArticleDateUpdate());
-            $prepare->bindValue(6,$mapping->getArticleDatePublish());
-            $prepare->bindValue(7,$mapping->getArticleIsPublished());
-            $prepare->bindValue(8,$mapping->getUserUserId());
+            $prepare->bindValue(4,$mapping->getUserUserId());
+          
             $prepare->execute();
 
             $prepare->closeCursor();

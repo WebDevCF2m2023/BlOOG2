@@ -85,7 +85,7 @@ if(isset($_GET['view'])&&ctype_digit($_GET['view'])){
     }else{
         $error = $deleteArticle;
     }
-
+    echo $error;
 // homepage
 }else{
     // select all Article
