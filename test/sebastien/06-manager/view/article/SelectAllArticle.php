@@ -21,7 +21,7 @@
         ?>
     <h4>ID : <?=$item->getArticleId()?> <a href="?route=article&view=<?=$item->getArticleId()?>">Voir ce commentaire via son id</a> | <a href="?route=article&update=<?=$item->getArticleId()?>">Mettre à jour</a> | <a href="?route=article&delete=<?=$item->getArticleId()?>" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce commentaire ?');">Supprimer</a> </h4>
     <p><?=$item->getArticleText()?></p>
-    <p><?=$item->getArticleDateCreate()?></p><hr>
+    <p><?= is_null($item->getArticleDateUpdate()) ? $item->getArticleDateCreate() : $item->getArticleDateUpdate() ?></p><hr>
         <?php
         endforeach;
         var_dump($selectAllArticle);
