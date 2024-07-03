@@ -20,7 +20,8 @@
         foreach($selectAllComments as $item):
         ?>
     <h4>ID : <?=$item->getCommentId()?> <a href="?route=comment&view=<?=$item->getCommentId()?>">Voir ce commentaire via son id</a> | <a href="?route=comment&update=<?=$item->getCommentId()?>">Mettre à jour</a> | <a href="?route=comment&delete=<?=$item->getCommentId()?>" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce commentaire ?');">Supprimer</a> </h4>
-    <p><?=$item->getCommentText()?></p>
+    <h5>user: <?=$item->getUserUserLogin()?></h5>
+    <h5>article: <?=$item->getArticleArticleTitle()?></h5>
     <p><?=$item->getCommentDateCreate()?></p><hr>
         <?php
         endforeach;

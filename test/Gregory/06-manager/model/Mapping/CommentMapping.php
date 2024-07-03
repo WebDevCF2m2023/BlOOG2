@@ -146,7 +146,7 @@ class CommentMapping extends AbstractMapping
 
     public function getUserUserLogin(): ?string
     {
-        return $this->article_article_id;
+        return $this->user_user_login;
     }
 
     public function setUserUserLogin(?string $user_user_login)

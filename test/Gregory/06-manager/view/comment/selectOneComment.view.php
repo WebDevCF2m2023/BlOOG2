@@ -20,6 +20,8 @@
     else:
         ?>
     <h4>ID : <?=$selectOneComment->getCommentId()?> <a href="?route=comment&view=<?=$selectOneComment->getCommentId()?>">Voir ce commentaire via son id</a></h4>
+    <h5>user: <?=$selectOneComment->getUserUserLogin()?></h5>
+    <h5>article: <?=$selectOneComment->getArticleArticleTitle()?></h5>
     <p><?=$selectOneComment->getCommentText()?></p>
     <p><?=$selectOneComment->getCommentDateCreate()?></p><hr>
         <?php
