@@ -1,15 +1,36 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Erreur 404</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Styles pour personnaliser */
+        body {
+            padding: 20px;
+        }
+        .error-container {
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-<h1>Erreur 404</h1>
-<?php include "menu.homepage.view.php"; ?>
-<p>La page demandée n'existe pas</p>
+    <div class="container">
+        <h1 class="mt-5">Erreur 404</h1>
+        
+        <!-- Inclusion du menu -->
+        <?php include "menu.homepage.view.php"; ?>
+        
+        <div class="error-container">
+            <p>La page demandée n'existe pas</p>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS et dépendances -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

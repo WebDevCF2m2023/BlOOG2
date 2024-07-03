@@ -1,5 +1,5 @@
 <?php
-// on va utiliser notre manager de commentaires
+// on va utiliser notre manager de Article
 use model\Manager\ArticleManager;
 // on va utiliser notre classe de mapping des article
 use model\Mapping\ArticleMapping;
@@ -13,12 +13,12 @@ $articleManager = new articleManager($dbConnect);
 // detail view
 if(isset($_GET['view'])&&ctype_digit($_GET['view'])){
     $idArticle = (int) $_GET['view'];
-    // select one comment
+    // select one Article
     $selectOneArticle = $articleManager->selectOneById($idArticle);
     // view
     require "../view/article/selectOneArticle.view.php";
 
-// insert comment page
+// insert Article page
 }elseif(isset($_GET['insert'])){
 
 // real insert comment
