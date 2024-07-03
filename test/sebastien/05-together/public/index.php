@@ -6,6 +6,9 @@
 use model\Interface\InterfaceManager;
 use model\Manager\PermissionManager;
 
+use model\Mapping\PermissionMapping;
+
+
 session_start();
 
 // Appel de la config
@@ -36,18 +39,92 @@ try {
 
 $permissionManager = new PermissionManager($dbConnect);
 
-$allPermission = $permissionManager->selectAll();
 
-$selectedPermission = null;
-if (isset($_GET['permission_id'])) {
-    $permissionId = (int)$_GET['permission_id'];
-    $selectedPermission = $permissionManager->selectOneById($permissionId);
+// detail view
+if(isset($_GET['view'])&&ctype_digit($_GET['view'])){
+    $idPermission = (int) $_GET['view'];
+    // select one permission
+    $selectOnePermission = $permissionManager->selectOneById($idPermission);
+    // view
+    require "../view/permission/selectOnePermission.view.php";
+
+// insert permission page
+}elseif(isset($_GET['insert'])){
+
+// real insert permission
+    if(isset($_POST['permission_name'], $_POST['permission_description'])) {
+        try{
+            // create permission
+            $permission = new PermissionMapping($_POST);
+            
+            // insert permission
+            $insertPermission = $permissionManager->insert($permission);
+
+            if($insertPermission===true) {
+                header("Location: ./");
+                exit();
+            }else{
+                $error = $insertPermission;
+            }
+        }catch(Exception $e){
+            $error = $e->getMessage();
+        }
+        
+
+    }
+    // view
+    require "../view/permission/insertPermission.view.php";
+
+// update permission
+}elseif (isset($_GET['update'])&&ctype_digit($_GET['update'])) {
+    $idPermission = (int)$_GET['update'];
+
+    // update permission
+    if (isset($_POST['permission_name'], 
+              $_POST['permission_description'])) {
+        try {
+            // create permission
+            $permission = new PermissionMapping($_POST);
+            $permission->setPermissionId($idPermission);
+            // update permission
+            $updatePermission = $permissionManager->update($permission);
+            if($updatePermission===true) {
+                header("Location: ./");
+                exit();
+            }else{
+                $error = $updatePermission;
+            }
+        }catch (Exception $e) {
+            $error = $e->getMessage();
+        }
+
+    }
+    // select one permission
+    $selectOnePermission = $permissionManager->selectOneById($idPermission);
+    // view
+    require "../view/permission/updatePermission.view.php";
+
+// delete permission
+}elseif(isset($_GET['delete'])&&ctype_digit($_GET['delete'])){
+    $idPermission = (int) $_GET['delete'];
+    // delete permission
+    $deletePermission = $permissionManager->delete($idPermission);
+    if($deletePermission===true) {
+        header("Location: ./");
+        exit();
+    }else{
+        $error = $deletePermission;
+    }
+
+// homepage
+}else{
+    // select all permission
+    $selectAllPermissions = $permissionManager->selectAll();
+    // view
+    require "../view/permission/selectAllPermission.view.php";
 }
 
-
-require PROJECT_DIRECTORY."/view/permission/permission.homepage.view.php";
-require PROJECT_DIRECTORY."/view/permission/selectOnePermission.view.php";
+$dbConnect = null;
 
 
-var_dump($permissionManager);
-var_dump($selectedPermission);
+
