@@ -4,8 +4,7 @@
 session_start();
 
 // on va chercher le chemin de ExempleMapping
-
-use model\Mapping\ArticleMapping;
+use model\Mapping\ExempleMapping;
 
 
 // Appel de la config
@@ -22,45 +21,39 @@ echo PROJECT_DIRECTORY;
 
 $date = new DateTime();
 
-$article1 = new ArticleMapping([
-    "article_id" => null,
-    "article_title" => "   article1   ",
-    "article_slug" => null,
-    "article_text" => "Un text de article1",
-    "article_date_create" => new DateTime(),
-    "article_date_update" => new DateTime(),
-    "article_date_publish" => null,
-    "article_is_published" => false,
-    "user_user_id" => 1,
+$exemple1 = new ExempleMapping([
+    "exemple_id" => 1,
+    "exemple_name" => "   exemple1   ",
+    "exemple_description" => "description1",
+    "exemple_number" => 1,
+    "exemple_date" => new DateTime(),
+    "exemple_boolean" => true,
+    "exemple_float" => 1.1,
     "je_suis_un_champ_inexistant" => "je suis un champ inexistant",
 ]);
 
-$article2 = new ArticleMapping([
-    "article_id" => null,
-    "article_title" => " <p>   article2 </p>  ",
-    "article_slug" => null,
-    "article_text" => "Un text de article2",
-    "article_date_create" => "2024-03-01 12:17:00",
-    "article_date_update" => "2024-03-01 12:17:00",
-    "article_date_publish" => null,
-    "article_is_published" => false,
-    "user_user_id" => 2,
+$exemple2 = new ExempleMapping([
+    "exemple_id" => 2,
+    "exemple_name" => " <p>  Un autre exemple </p>",
+    "exemple_description" => "Voici une description d'un être aimé",
+    "exemple_number" => 83,
+    "exemple_date" => "2024-03-01 12:17:00",
+    "exemple_boolean" => false,
+    "exemple_float" => -82,
     "je_suis_un_champ_inexistant" => "je suis un champ inexistant",
 ]);
 
-$article3 = new ArticleMapping([
-    "article_id" => null,
-    "article_title" => " <p>  \"coucou\"  article3 </p>  ",
-    "article_slug" => null,
-    "article_text" => "Un text de <br> article3",
-    "article_date_create" => "Bouh",
-    "article_date_update" => "Bibou",
-    "article_date_publish" => new DateTime(),
-    "article_is_published" => true,
-    "user_user_id" => 3,
+$exemple3 = new ExempleMapping([
+    "exemple_id" => 3,
+    "exemple_name" => "Encore un \"autre\" exemple",
+    "exemple_description" => "Voici une description d'un être aimé, <br>, ou non",
+    "exemple_number" => 21,
+    "exemple_date" => "Miam",
+    "exemple_boolean" => false,
+    "exemple_float" => -82.3465,
     "je_suis_un_champ_inexistant" => "je suis un champ inexistant",
 ]);
 
-echo $article3->getArticleTitle();
+echo $exemple3->getExempleName();
 
-var_dump($date, $article1,$article2,$article3);
+var_dump($date, $exemple1,$exemple2,$exemple3);

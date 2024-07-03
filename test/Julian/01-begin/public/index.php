@@ -1,9 +1,6 @@
 <?php
 
 // session
-
-use model\Mapping\MappingTag;
-
 session_start();
 
 // Appel de la config
@@ -15,16 +12,40 @@ spl_autoload_register(function ($class) {
     require PROJECT_DIRECTORY.'/' .$class . '.php';
 });
 
-echo PROJECT_DIRECTORY . '<br>';
+echo PROJECT_DIRECTORY."<br>";
 
-$tag1 = new MappingTag([
-    'tag_id'=> 7,
-    'tag_slug'=> 'php-8',
+// on peut utiliser l'écriture longue pour appeler une classe
+// via l'autoload en utilisant son namespace
+$tag1 = new model\Mapping\MappingTag([
+    'tag_id' => 1,
+    'tag_slug' => "php-8",
+    "Je m'amuse beaucoup !"=>"14",
+    "Nimporte_Quoi"=>"yep",
 ]);
 
-$tag2 = new MappingTag([
-    'tag_id' => 15,
-    'tag_slug' => 'Slug moi oui vas y'
+// manière courte l'alias n'est créé que si on a 2 classes 
+// qui portent le même nom
+use model\Mapping\MappingTag as lulu;
+
+$tag2 = new lulu([
+    'tag_id' => 8,
+    'tag_slug' => "php-8.4",
 ]);
-echo $tag2;
-var_dump($tag1, $tag2);
+
+use model\Mapping\MappingTag;
+
+$tag3 = new MappingTag([
+    'tag_id' => 13,
+    'tag_slug' => "php-9",
+    'Argggg_ho_tempo' => 164862,
+]);
+
+// on voudrait un 'vrai' slug
+$tag4 = new MappingTag([
+    'tag_id'=>15,
+    'tag_slug'=> "J'aimerais que ceci soit un slug ù$^*ùµùm^m, non?|ééç!è",
+]);
+
+echo $tag4."<br>";
+
+var_dump($tag1,$tag2,$tag3,$tag4);

@@ -107,5 +107,12 @@ class ExempleMapping extends AbstractMapping
         $this->exemple_float = $exemple_float;
     }
 
+    // on doit implémenter la classe abstraite du parent
+    // __toString est une méthode magique qui, si on veut
+    // afficher l'instance comme une chaîne de caractère
+    public function __toString(): string
+    {
+        return "Cette instance est créée par ".self::class;
+    }
 
 }
