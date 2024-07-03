@@ -55,10 +55,11 @@ class CategoryMapping extends AbstractMapping
 
     public function setCategorySlug(?string $category_slug): void
     {
+        $category_slug = trim(strip_tags($category_slug));
         if($category_slug === null || strlen($category_slug) === 0)
             $this->category_slug = $this->slugify($this->getCategoryName());
         else
-            $this->category_slug = $this->slugify(trim(strip_tags($category_slug)));
+            $this->category_slug = $this->slugify($category_slug);
     }
 
     public function getCategoryDescription(): ?string
