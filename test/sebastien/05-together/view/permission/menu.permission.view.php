@@ -6,4 +6,5 @@
   <a class="navbar-brand" href="./">Homepage</a>
   <a class="navbar-brand" href="?insert">Insert</a>
 </nav>
+
 </div>

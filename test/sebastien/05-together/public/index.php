@@ -5,7 +5,9 @@
 //on indique le chemin vers des class que on utulisera 
 use model\Interface\InterfaceManager;
 use model\Manager\PermissionManager;
+
 use model\Mapping\PermissionMapping;
+
 
 session_start();
 
@@ -36,6 +38,7 @@ try {
 
 
 $permissionManager = new PermissionManager($dbConnect);
+
 
 // detail view
 if(isset($_GET['view'])&&ctype_digit($_GET['view'])){
@@ -122,4 +125,6 @@ if(isset($_GET['view'])&&ctype_digit($_GET['view'])){
 }
 
 $dbConnect = null;
+
+
 

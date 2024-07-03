@@ -4,9 +4,11 @@
 namespace model\Manager;
 
 use PDO;
+
+use model\Abstract\AbstractMapping;
 use model\Interface\InterfaceManager;
 use model\Mapping\PermissionMapping;
-use model\Abstract\AbstractMapping;
+
 use Exception;
 
 class PermissionManager implements InterfaceManager{
@@ -68,6 +70,7 @@ class PermissionManager implements InterfaceManager{
 
 
     // insérera uniquement des enfants de AbstractMapping
+
     public function insert(AbstractMapping $mapping): bool|string{
         
 // requête préparée
@@ -77,6 +80,7 @@ $prepare = $this->db->prepare($sql);
 try{
     $prepare->bindValue(1,$mapping->getPermissionName());
     $prepare->bindValue(2,$mapping->getPermissionDescription());
+
 
     $prepare->execute();
 
@@ -88,6 +92,7 @@ try{
     return $e->getMessage();
 }
 }
+
     public function update(AbstractMapping $mapping){
          // requête préparée
          $sql = "UPDATE `permission` SET `permission_name`=?, `permission_description`=? WHERE `permission_id`=?";
@@ -98,6 +103,7 @@ try{
             $prepare->bindValue(1,$mapping->getPermissionName());
             $prepare->bindValue(2,$mapping->getPermissionDescription());
             $prepare->bindValue(3,$mapping->getPermissionId(), PDO::PARAM_INT);
+
  
              $prepare->execute();
  
@@ -115,7 +121,9 @@ try{
     public function delete(int $id){
         
  // requête préparée
+
         $sql = "DELETE FROM `permission` WHERE `permission_id`=?";
+
         $prepare = $this->db->prepare($sql);
 
         try{
