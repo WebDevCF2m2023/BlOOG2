@@ -16,7 +16,7 @@ SET time_zone = "+00:00";
 -- Base de données : `bloog`
 --
 DROP DATABASE IF EXISTS `bloog`;
-CREATE DATABASE IF NOT EXISTS `bloog` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
+CREATE DATABASE IF NOT EXISTS `bloog` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `bloog`;
 
 -- --------------------------------------------------------
@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `article` (
                                          PRIMARY KEY (`article_id`),
                                          UNIQUE KEY `article_slug_UNIQUE` (`article_slug`),
                                          KEY `fk_article_user1_idx` (`user_user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `article`
@@ -61,7 +61,7 @@ CREATE TABLE IF NOT EXISTS `article_has_category` (
                                                       PRIMARY KEY (`article_article_id`,`category_category_id`),
                                                       KEY `fk_article_has_category_category1_idx` (`category_category_id`),
                                                       KEY `fk_article_has_category_article1_idx` (`article_article_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `article_has_category`
@@ -87,7 +87,7 @@ CREATE TABLE IF NOT EXISTS `category` (
                                           `category_parent` int UNSIGNED DEFAULT '0',
                                           PRIMARY KEY (`category_id`),
                                           UNIQUE KEY `category_slug_UNIQUE` (`category_slug`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `category`
@@ -121,7 +121,7 @@ CREATE TABLE IF NOT EXISTS `comment` (
                                          PRIMARY KEY (`comment_id`),
                                          KEY `fk_comment_user1_idx` (`user_user_id`),
                                          KEY `fk_comment_article1_idx` (`article_article_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `comment`
@@ -139,11 +139,11 @@ INSERT INTO `comment` (`comment_id`, `comment_text`, `comment_parent`, `comment_
 DROP TABLE IF EXISTS `file`;
 CREATE TABLE IF NOT EXISTS `file` (
                                       `file_id` int UNSIGNED NOT NULL AUTO_INCREMENT,
-                                      `file_url` varchar(60) NOT NULL,
+                                      `file_url` varchar(120) NOT NULL,
                                       `file_description` varchar(150) DEFAULT NULL,
-                                      `file_type` varchar(6) NOT NULL,
+                                      `file_type` varchar(10) NOT NULL,
                                       PRIMARY KEY (`file_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `file`
@@ -165,7 +165,7 @@ CREATE TABLE IF NOT EXISTS `file_has_article` (
                                                   PRIMARY KEY (`file_file_id`,`article_article_id`),
                                                   KEY `fk_file_has_article_article1_idx` (`article_article_id`),
                                                   KEY `fk_file_has_article_file1_idx` (`file_file_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `file_has_article`
@@ -186,7 +186,7 @@ CREATE TABLE IF NOT EXISTS `permission` (
                                             `permission_name` varchar(45) NOT NULL,
                                             `permission_description` varchar(300) DEFAULT NULL,
                                             PRIMARY KEY (`permission_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `permission`
@@ -207,10 +207,10 @@ INSERT INTO `permission` (`permission_id`, `permission_name`, `permission_descri
 DROP TABLE IF EXISTS `tag`;
 CREATE TABLE IF NOT EXISTS `tag` (
                                      `tag_id` int UNSIGNED NOT NULL AUTO_INCREMENT,
-                                     `tag_slug` varchar(60) NOT NULL,
+                                     `tag_slug` varchar(100) NOT NULL,
                                      PRIMARY KEY (`tag_id`),
                                      UNIQUE KEY `tag_slug_UNIQUE` (`tag_slug`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `tag`
@@ -237,7 +237,7 @@ CREATE TABLE IF NOT EXISTS `tag_has_article` (
                                                  PRIMARY KEY (`tag_tag_id`,`article_article_id`),
                                                  KEY `fk_tag_has_article_article1_idx` (`article_article_id`),
                                                  KEY `fk_tag_has_article_tag1_idx` (`tag_tag_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `tag_has_article`
@@ -268,7 +268,7 @@ CREATE TABLE IF NOT EXISTS `user` (
                                       UNIQUE KEY `user_login_UNIQUE` (`user_login`),
                                       UNIQUE KEY `user_mail_UNIQUE` (`user_mail`),
                                       KEY `fk_user_permission_idx` (`permission_permission_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `user`
