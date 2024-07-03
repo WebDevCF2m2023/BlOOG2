@@ -36,15 +36,14 @@ class CategoryMapping extends AbstractMapping
 
     public function getCategoryName(): ?string
     {
-
         return $this->category_name;
-
     }
 
     public function setCategoryName(?string $category_name): void
     {
 
         $text = trim(strip_tags($category_name));
+        if(strlen($text) === 0) throw new Exception('Le nom de la catégorie ne peut pas être vide !');
         $this->category_name = $text;
     }
 
@@ -69,7 +68,9 @@ class CategoryMapping extends AbstractMapping
 
     public function setCategoryDescription(?string $category_description): void
     {
-        $this->category_description = trim(strip_tags($category_description));
+        $category_description = trim(strip_tags($category_description));
+        if(strlen($category_description) === 0) throw new Exception('La description de la catégorie ne peut pas être vide !');
+        $this->category_description = $category_description;
     }
 
     public function getCategoryParent(): ?int

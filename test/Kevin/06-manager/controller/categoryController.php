@@ -21,25 +21,28 @@ if(isset($_GET['view'])&&ctype_digit($_GET['view'])){
 // insert category page
 }elseif(isset($_GET['insert'])){
 
-// real insert category
-    if(isset($_POST['category_name'], $_POST['category_slug'], $_POST['category_description'], $_POST['category_parent'])) {
-        try{
-            // create category
-            $category = new CategoryMapping($_POST);
-            // insert category
-            $insertCategory = $categoryManager->insert($category);
-
-            if($insertCategory===true) {
-                header("Location: ./?route=category");
-                exit();
-            }else{
-                $error = $insertCategory;
+    // real insert category
+    if(isset($_POST['category_name'], $_POST['category_slug'], $_POST['category_description'], $_POST['category_parent']) && ctype_digit($_POST['category_parent'])) {
+        $categoryParent = $categoryManager->selectOneById($_POST['category_parent']);
+        $errorCategory = gettype($categoryParent) === "string";
+        if(!is_null($categoryParent) && !$errorCategory){
+            try{
+                // create category
+                $category = new CategoryMapping($_POST);
+                // insert category
+                $insertCategory = $categoryManager->insert($category);
+                if($insertCategory===true) {
+                    header("Location: ./?route=category");
+                    exit();
+                }else{
+                    $error = $insertCategory;
+                }
+            }catch(Exception $e){
+                $error = $e->getMessage();
             }
-        }catch(Exception $e){
-            $error = $e->getMessage();
-        }
-
+        }else $error = $errorCategory ? $errorCategory : "Le parent n'a pas été trouvé.";
     }
+    $allNamesIDCategory = $categoryManager->selectAllNamesID();
     // view
     require "../view/category/insertCategory.view.php";
 
@@ -48,26 +51,31 @@ if(isset($_GET['view'])&&ctype_digit($_GET['view'])){
     $idCategory = (int)$_GET['update'];
 
     // update category
-    if(isset($_POST['category_name'], $_POST['category_slug'], $_POST['category_description'], $_POST['category_parent'])) {
-        try {
-            // create category
-            $category = new CategoryMapping($_POST);
-            $category->setCategoryId($idCategory);
-            // update category
-            $updateCategory = $categoryManager->update($category);
-            if($updateCategory===true) {
-                header("Location: ./?route=category");
-                exit();
-            }else{
-                $error = $updateCategory;
+    if(isset($_POST['category_name'], $_POST['category_slug'], $_POST['category_description'], $_POST['category_parent']) && ctype_digit($_POST['category_parent'])) {
+        $categoryParent = $categoryManager->selectOneById($_POST['category_parent']);
+        $errorCategory = gettype($categoryParent) === "string";
+        if(!is_null($categoryParent) && !$errorCategory){
+            try {
+                // create category
+                $category = new CategoryMapping($_POST);
+                $category->setCategoryId($idCategory);
+                // update category
+                $updateCategory = $categoryManager->update($category);
+                if($updateCategory===true) {
+                    header("Location: ./?route=category");
+                    exit();
+                }else{
+                    $error = $updateCategory;
+                }
+            }catch (Exception $e) {
+                $error = $e->getMessage();
             }
-        }catch (Exception $e) {
-            $error = $e->getMessage();
-        }
+        }else $error = $errorCategory ? $errorCategory : "Le parent n'a pas été trouvé.";
 
     }
     // select one category
     $selectOneCategory = $categoryManager->selectOneById($idCategory);
+    $allNamesIDCategory = $categoryManager->selectAllNamesID();
     // view
     require "../view/category/updateCategory.view.php";
 

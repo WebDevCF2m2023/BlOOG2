@@ -19,6 +19,37 @@ class CategoryManager implements InterfaceManager{
         $this->connect = $db;
     }
 
+    public function selectAllNamesID(): ?array
+    {
+        // requête SQL
+        $sql = "SELECT `category_id`, `category_name` FROM `category`";
+        // query car pas d'entrées d'utilisateur
+        $select = $this->connect->query($sql);
+
+        // si on ne récupère rien, on quitte avec un message d'erreur
+        if($select->rowCount()===0) return null;
+
+        // on transforme nos résultats en tableau associatif
+        $array = $select->fetchAll(PDO::FETCH_ASSOC);
+
+        // on ferme le curseur
+        $select->closeCursor();
+
+        // on va stocker les catégories dans un tableau
+        $arrayCategory = [];
+
+        /* pour chaque valeur, on va créer une instance de classe
+        CategoryMapping, liée à la table qu'on va manager
+        */
+        foreach($array as $value){
+            // on remplit un nouveau tableau contenant les catégories
+            $arrayCategory[] = new CategoryMapping($value);
+        }
+
+        // on retourne le tableau
+        return $arrayCategory;
+    }
+
     // sélection de tous les articles
     public function selectAll(): ?array
     {
