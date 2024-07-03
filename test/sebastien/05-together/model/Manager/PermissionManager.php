@@ -4,9 +4,11 @@
 namespace model\Manager;
 
 use PDO;
+
 use model\Abstract\AbstractMapping;
 use model\Interface\InterfaceManager;
 use model\Mapping\PermissionMapping;
+
 use Exception;
 
 class PermissionManager implements InterfaceManager{
@@ -68,14 +70,17 @@ class PermissionManager implements InterfaceManager{
 
 
     // insérera uniquement des enfants de AbstractMapping
-    public function insert(object $object): bool|string{
+
+    public function insert(AbstractMapping $mapping): bool|string{
         
 // requête préparée
-$sql = "INSERT INTO `permission`(`permission_id`, `permission_name`, `permission_description` )  VALUES (?,1,1)";
+$sql = "INSERT INTO `permission`(`permission_name`, `permission_description` )  VALUES (?,?)";
 $prepare = $this->db->prepare($sql);
 
 try{
-    $prepare->bindValue(1,$object->getPermissionId());
+    $prepare->bindValue(1,$mapping->getPermissionName());
+    $prepare->bindValue(2,$mapping->getPermissionDescription());
+
 
     $prepare->execute();
 
@@ -87,17 +92,18 @@ try{
     return $e->getMessage();
 }
 }
-    public function update(object $object){
+
+    public function update(AbstractMapping $mapping){
          // requête préparée
-         $sql = "UPDATE `comment` SET `comment_text`=?, `comment_date_update`=? WHERE `comment_id`=?";
+         $sql = "UPDATE `permission` SET `permission_name`=?, `permission_description`=? WHERE `permission_id`=?";
          // mise à jour de la date de modification
-         $object->setCommentDateUpdate(date("Y-m-d H:i:s"));
          $prepare = $this->db->prepare($sql);
  
          try{
-             $prepare->bindValue(1,$object->getCommentText());
-             $prepare->bindValue(2,$object->getCommentDateUpdate());
-             $prepare->bindValue(3,$object->getCommentId(), PDO::PARAM_INT);
+            $prepare->bindValue(1,$mapping->getPermissionName());
+            $prepare->bindValue(2,$mapping->getPermissionDescription());
+            $prepare->bindValue(3,$mapping->getPermissionId(), PDO::PARAM_INT);
+
  
              $prepare->execute();
  
@@ -115,7 +121,9 @@ try{
     public function delete(int $id){
         
  // requête préparée
-        $sql = "DELETE FROM `comment` WHERE `comment_id`=?";
+
+        $sql = "DELETE FROM `permission` WHERE `permission_id`=?";
+
         $prepare = $this->db->prepare($sql);
 
         try{

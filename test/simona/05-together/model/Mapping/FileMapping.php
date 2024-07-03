@@ -1,14 +1,31 @@
 <?php
 
 namespace model\Mapping;
-use model\Abstract\AbstractMappingA;
+
+use model\Abstract\AbstractMapping;
 use Exception;
 
-class FileMapping extends AbstractMappingA
+class FileMapping extends AbstractMapping
 {
-    protected ?string $file_url;
-    protected ?string $file_description;
-    protected ?string $file_type;
+   
+    protected ?int $file_id=null;
+    protected ?string $file_url=null;
+    protected ?string $file_description=null;
+    protected ?string $file_type=null;
+
+
+    public function getFileId(): ?int
+    {
+        return $this->file_id;
+    }
+
+    public function setFileId(?int $file_id): void
+    {
+        if ($file_id <= 0) {
+            throw new Exception("ID non valide");
+        }
+        $this->file_id = $file_id;
+    }
 
     public function getFileUrl(): ?string
     {
@@ -17,7 +34,7 @@ class FileMapping extends AbstractMappingA
 
     public function setFileUrl(?string $file_url): void
     {
-        $text = htmlspecialchars(trim(strip_tags($file_url)), ENT_QUOTES);
+        $text = trim(strip_tags($file_url));
         $this->file_url = $text;
     }
 
@@ -40,9 +57,8 @@ class FileMapping extends AbstractMappingA
     {
         $this->file_type = $file_type;
     }
-
     public function __toString(): string
     {
-        return "Cette instance est créée par " . self::class;
+        return "Cette instance est créée par ".self::class;
     }
 }
