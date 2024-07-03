@@ -22,6 +22,7 @@ class CommentMapping extends AbstractMapping
     protected ?int $user_user_id=null;
     protected ?string $user_user_login=null;
     protected ?int $article_article_id=null;
+    protected ?string $article_article_title;
 
     
 
@@ -150,9 +151,18 @@ class CommentMapping extends AbstractMapping
 
     public function setUserUserLogin(?string $user_user_login)
     {
-        $username = trim(htmlspecialchars($user_user_login));
-        if (strlen($username) < 3) throw new Exception("nom d'utilisateur trop long"); 
         $this->user_user_login = trim(htmlspecialchars($user_user_login));
+    }
+
+
+
+    public function getArticleArticleTitle ():?string
+    {
+        return $this->article_article_title;
+    }
+    public function setArticleArticleTitle (?string $article_article_title)
+    {
+        $this->article_article_title = $article_article_title;
     }
 
 

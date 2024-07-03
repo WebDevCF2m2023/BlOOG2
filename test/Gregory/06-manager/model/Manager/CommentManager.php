@@ -23,7 +23,7 @@ class CommentManager implements InterfaceManager{
     public function selectAll(): ?array
     {
         // requête SQL
-        $sql = "SELECT `comment`.*, `user`.`user_login` AS user_user_login FROM `comment` LEFT JOIN `user` on `user`.`user_id`=`comment`.`user_user_id` -- WHERE `comment_id`=999
+        $sql = "SELECT `comment`.*, `user`.`user_login` AS user_user_login, `article`.`article_title` AS article_article_title FROM `comment` LEFT JOIN `user` on `user`.`user_id`=`comment`.`user_user_id` LEFT JOIN `article` on `article`.`article_id`=`comment`.`article_article_id`-- WHERE `comment_id`=999
          ORDER BY `comment_date_create` DESC";
         // query car pas d'entrées d'utilisateur
         $select = $this->connect->query($sql);
@@ -57,7 +57,7 @@ class CommentManager implements InterfaceManager{
     {
 
         // requête préparée
-        $sql = "SELECT `comment`.*, `user`.`user_login` AS user_user_login FROM `comment` LEFT JOIN `user` on `user`.`user_id`=`comment`.`user_user_id` WHERE `comment_id`= ?";
+        $sql = "SELECT `comment`.*, `user`.`user_login` AS user_user_login, `article`.`article_title` AS article_article_title FROM `comment` LEFT JOIN `user` on `user`.`user_id`=`comment`.`user_user_id` LEFT JOIN `article` on `article`.`article_id`=`comment`.`article_article_id` WHERE `comment_id`= ?";
         $prepare = $this->connect->prepare($sql);
 
         try{
