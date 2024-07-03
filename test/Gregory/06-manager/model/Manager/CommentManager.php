@@ -132,7 +132,7 @@ class CommentManager implements InterfaceManager{
             throw new Exception('L\'objet doit être une instance de CommentMapping'); 
         }
         // requête préparée
-        $sql = "UPDATE `comment` SET `comment_text`=?, `comment_date_update`=? WHERE `comment_id`=?";
+        $sql = "UPDATE `comment` SET `comment_text`=?, `comment_date_update`=?, `user_user_id`=?, `article_article_id`=? WHERE `comment_id`=?";
         // mise à jour de la date de modification
         $mapping->setCommentDateUpdate(date("Y-m-d H:i:s"));
         $prepare = $this->connect->prepare($sql);
@@ -140,7 +140,9 @@ class CommentManager implements InterfaceManager{
         try{
             $prepare->bindValue(1,$mapping->getCommentText());
             $prepare->bindValue(2,$mapping->getCommentDateUpdate());
-            $prepare->bindValue(3,$mapping->getCommentId(), PDO::PARAM_INT);
+            $prepare->bindValue(3,$mapping->getUserUserId());
+            $prepare->bindValue(4,$mapping->getArticleArticleId());
+            $prepare->bindValue(5,$mapping->getCommentId(), PDO::PARAM_INT);
 
             $prepare->execute();
 
