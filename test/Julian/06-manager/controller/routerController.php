@@ -12,7 +12,7 @@ switch ($route) {
         break;
     case 'article':
         # todo
-        echo 'article à gérer';
+        require 'articleController.php';
         break;
     case 'category':
         echo 'category à gérer';
