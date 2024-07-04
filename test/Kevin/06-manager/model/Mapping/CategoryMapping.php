@@ -41,7 +41,6 @@ class CategoryMapping extends AbstractMapping
 
     public function setCategoryName(?string $category_name): void
     {
-
         $text = trim(strip_tags($category_name));
         if(strlen($text) === 0) throw new Exception('Le nom de la catégorie ne peut pas être vide !');
         $this->category_name = $text;
