@@ -1,4 +1,4 @@
 <?php
 
 // exemple template
-echo $twig->render('template.bootstrap.html.twig');
+echo $twig->render('publicView/public.homepage.html.twig');

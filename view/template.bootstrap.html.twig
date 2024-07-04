@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Bloog 2{% endblock %}
+{% block title %}BlOOg 2{% endblock %}
 {% block style %}
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
@@ -28,8 +28,8 @@
     <header class="py-5 bg-light border-bottom mb-4">
         <div class="container">
             <div class="text-center my-5">
-                <h1 class="fw-bolder">Welcome to Blog Home!</h1>
-                <p class="lead mb-0">A Bootstrap 5 starter layout for your next blog homepage</p>
+                <h1 class="fw-bolder">{% block htitle %}BlOOG 2{% endblock %}</h1>
+                <p class="lead mb-0">{% block hdesc %}Template pour notre BlOOG 2{% endblock %}</p>
             </div>
         </div>
     </header>
