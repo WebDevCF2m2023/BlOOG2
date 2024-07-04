@@ -1,7 +1,8 @@
 <?php
+
 namespace model\Interface;
 
 interface InterfaceSlugManager
 {
-    public function selectOneBySlug(string $slug);
+    public function selectOneBySlug(string $slug): object;
 }

@@ -1,5 +1,4 @@
 <?php
-namespace model\Interface;
 
 interface InterfaceSlugManager
 {
