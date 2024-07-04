@@ -28,7 +28,12 @@
         </div>
         <div>
             <label for="category_parent">ID du parent :</label>
-            <input type="number" name="category_parent" id="category_parent" min="0" value="0">
+            <select name="category_parent" id="category_parent">
+                <option value="0">-------------</option>
+                <?php foreach($allNamesIDCategory as $category): ?>
+                    <option value="<?= $category->getCategoryId() ?>"><?= $category->getCategoryName() ?></option>
+                <?php endforeach; ?>
+            </select>
         </div>
         <input type="submit" value="Envoyer">
     </form>

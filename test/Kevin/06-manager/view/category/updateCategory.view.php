@@ -33,7 +33,13 @@
                 </div>
                 <div>
                     <label for="category_parent">ID du parent :</label>
-                    <input type="number" name="category_parent" id="category_parent" min="0" value="<?= $selectOneCategory->getCategoryParent() ?>">
+                    <select name="category_parent" id="category_parent">
+                        <option value="0">-------------</option>
+                        <?php foreach($allNamesIDCategory as $category): ?>
+                            <?php if($category->getCategoryId() === $selectOneCategory->getCategoryId()) continue; ?>
+                            <option <?= $category->getCategoryId() === $selectOneCategory->getCategoryParent() ? "selected" : "" ?> value="<?= $category->getCategoryId() ?>"><?= $category->getCategoryName() ?></option>
+                        <?php endforeach; ?>
+                    </select>
                 </div>
                 <input type="submit" value="Modifier">
             </form>
