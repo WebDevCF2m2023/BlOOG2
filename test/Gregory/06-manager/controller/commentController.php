@@ -97,3 +97,4 @@ if(isset($_GET['view'])&&ctype_digit($_GET['view'])){
     // view
     require "../view/comment/selectAllComment.view.php";
 }
+

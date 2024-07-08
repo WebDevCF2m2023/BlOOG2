@@ -3,32 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exemple du CommentManager::selectOneComment()</title>
+    <title>Exemple du FileManager::selectOneFile()</title>
 </head>
 <body>
-    <h1>Exemple du CommentManager::selectOneComment()</h1>
+    <h1>Exemple du FileManager::selectOneFile()</h1>
     <div>
         <?php
 
         include PROJECT_DIRECTORY."/view/menu.homepage.view.php";
 
-        if(is_null($selectOneComment)):
+        if(is_null($selectOneFile)):
         ?>
-        <h3>Commentaire inexistant</h3>
+        <h3>Fichier inexistant</h3>
         
         <?php
     else:
         ?>
-    <h4>ID : <?=$selectOneComment->getCommentId()?> <a href="?route=comment&view=<?=$selectOneComment->getCommentId()?>">Voir ce commentaire via son id</a></h4>
-    <p><?=$selectOneComment->getCommentText()?></p>
-    <p><?=$selectOneComment->getCommentDateCreate()?></p><hr>
+    <h4>ID : <?=$selectOneFile->getFileId()?> <a href="?route=file&view=<?=$selectOneFile->getFileId()?>">Voir ce fichier via son id</a></h4>
+    <p><?=$selectOneFile->getFileName()?></p>
+    <p><?=$selectOneFile->getFileDateCreate()?></p><hr>
         <?php
     endif;
         ?>
     </div>
     
     <?php
-var_dump($dbConnect,$commentManager,$selectOneComment);
+var_dump($dbConnect,$fileManager,$selectOneFile);
     ?>
 </body>
 </html>

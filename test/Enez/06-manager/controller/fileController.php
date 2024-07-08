@@ -1,95 +1,90 @@
 <?php
-// on va utiliser notre manager de commentaires
-use model\Manager\CommentManager;
-// on va utiliser notre classe de mapping de commentaires
-use model\Mapping\CommentMapping;
 
 
-// create comment Manager
-$commentManager = new CommentManager($dbConnect);
+use model\Mapping\FileMapping;
+use model\Manager\FileManager;
 
-
+// create file Manager
+$fileManager = new FileManager($dbConnect);
 
 // detail view
 if(isset($_GET['view'])&&ctype_digit($_GET['view'])){
-    $idComment = (int) $_GET['view'];
-    // select one comment
-    $selectOneComment = $commentManager->selectOneById($idComment);
+    $idFile = (int) $_GET['view'];
+    // select one file
+    $selectOneFile = $fileManager->selectOneById($idFile);
     // view
-    require "../view/comment/selectOneComment.view.php";
+    require "../view/file/selectOneFile.view.php";
 
-// insert comment page
+// insert file page
 }elseif(isset($_GET['insert'])){
 
-// real insert comment
-    if(isset($_POST['comment_text'])) {
+// real insert file
+    if(isset($_POST['file_name'], $_POST["file_type"], $_POST["file_size"], $_POST["file_date_create"])) {
         try{
-            // create comment
-            $comment = new CommentMapping($_POST);
-            // set date
-            $comment->setCommentDatePublish(new DateTime());
-            // insert comment
-            $insertComment = $commentManager->insert($comment);
+            // create file
+            $file = new FileMapping($_POST);
+            // insert file
+            $insertFile = $fileManager->insert($file);
 
-            if($insertComment===true) {
-                header("Location: ./?route=comment");
+            if($insertFile===true) {
+                header("Location: ./?route=file");
                 exit();
             }else{
-                $error = $insertComment;
+                $error = $insertFile;
             }
         }catch(Exception $e){
             $error = $e->getMessage();
         }
-        //var_dump($comment);
+        //var_dump($file);
 
     }
     // view
-    require "../view/comment/insertComment.view.php";
+    require "../view/file/insertFile.view.php";
 
-// delete comment
+// update file
+
 }elseif (isset($_GET['update'])&&ctype_digit($_GET['update'])) {
-    $idComment = (int)$_GET['update'];
+    $idFile = (int)$_GET['update'];
 
-    // update comment
-    if (isset($_POST['comment_text'])) {
+    // update file
+    if (isset($_POST['file_name'], $_POST["file_type"], $_POST["file_size"], $_POST["file_date_create"])) {
         try {
-            // create comment
-            $comment = new CommentMapping($_POST);
-            $comment->setCommentId($idComment);
-            // update comment
-            $updateComment = $commentManager->update($comment);
-            if($updateComment===true) {
-                header("Location: ./?route=comment");
+            // create file
+            $file = new FileMapping($_POST);
+            $file->setFileId($idFile);
+            // update file
+            $updateFile = $fileManager->update($file);
+            if($updateFile===true) {
+                header("Location: ./?route=file");
                 exit();
             }else{
-                $error = $updateComment;
+                $error = $updateFile;
             }
-        }catch (Exception $e) {
+        }catch(Exception $e){
             $error = $e->getMessage();
         }
-
+        //var_dump($file);
     }
-    // select one comment
-    $selectOneComment = $commentManager->selectOneById($idComment);
     // view
-    require "../view/comment/updateComment.view.php";
+    $selectOneFile = $fileManager->selectOneById($idFile);
+    require "../view/file/updateFile.view.php";
 
-// delete comment
-}elseif(isset($_GET['delete'])&&ctype_digit($_GET['delete'])){
-    $idComment = (int) $_GET['delete'];
-    // delete comment
-    $deleteComment = $commentManager->delete($idComment);
-    if($deleteComment===true) {
-        header("Location: ./?route=comment");
+// delete file
+}elseif (isset($_GET['delete'])&&ctype_digit($_GET['delete'])) {
+    $idFile = (int)$_GET['delete'];
+    // delete file
+    $deleteFile = $fileManager->delete($idFile);
+    if($deleteFile===true) {
+        header("Location: ./?route=file");
         exit();
     }else{
-        $error = $deleteComment;
+        $error = $deleteFile;
     }
-
-// homepage
-}else{
-    // select all comments
-    $selectAllComments = $commentManager->selectAll();
-    // view
-    require "../view/comment/selectAllComment.view.php";
-}
+    // view all files   
+}else{  
+    $files = $fileManager->selectAll();
+    require "../view/homepage.view.php";
+}   
+// close database
+$dbConnect = null;
+?>

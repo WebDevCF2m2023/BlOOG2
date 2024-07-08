@@ -24,8 +24,7 @@ class FileManager implements InterfaceManager{
     public function selectAll(): ?array
     {
         // requête SQL
-        $sql = "SELECT * FROM `file` -- WHERE `file_id`=999
-         ORDER BY `file_date_create` DESC";
+        $sql = "SELECT * FROM `file` -- WHERE `file_id`=999";
         // query car pas d'entrées d'utilisateur
         $select = $this->connect->query($sql);
 

@@ -13,6 +13,14 @@ class FileMapping extends AbstractMapping
     protected ?string $file_description=null;
     protected ?string $file_type=null;
 
+    public function __construct(array $data = [])
+    {
+        parent::__construct($data);
+        $this->file_id = $data['file_id'] ?? null;
+        $this->file_url = $data['file_url'] ?? null;
+        $this->file_description = $data['file_description'] ?? null;
+        $this->file_type = $data['file_type'] ?? null;
+    }
 
     public function getFileId(): ?int
     {

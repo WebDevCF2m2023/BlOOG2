@@ -3,28 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exemple du CommentManager::selectAll()</title>
+    <title>Exemple du FileManager::selectAll()</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <h1>Exemple du CommentManager::selectAll()</h1>
+    <h1>Exemple du FileManager::selectAll()</h1>
     <div>
         <?php
         include PROJECT_DIRECTORY."/view/menu.homepage.view.php";
 
-        if(is_null($selectAllComments)):
+        if(is_null($selectAllFiles)):
         ?>
-        <h3>Pas encore de commentaire !</h3>
+        <h3>Pas encore de fichier !</h3>
         <?php
     else:
-        foreach($selectAllComments as $item):
+        foreach($selectAllFiles as $item):
         ?>
-    <h4>ID : <?=$item->getCommentId()?> <a href="?route=comment&view=<?=$item->getCommentId()?>">Voir ce commentaire via son id</a> | <a href="?route=comment&update=<?=$item->getCommentId()?>">Mettre à jour</a> | <a href="?route=comment&delete=<?=$item->getCommentId()?>" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce commentaire ?');">Supprimer</a> </h4>
-    <p><?=$item->getCommentText()?></p>
-    <p><?=$item->getCommentDateCreate()?></p><hr>
+    <h4>ID : <?=$item->getFileId()?> <a href="?route=file&view=<?=$item->getFileId()?>">Voir ce fichier via son id</a> | <a href="?route=file&update=<?=$item->getFileId()?>">Mettre à jour</a> | <a href="?route=file&delete=<?=$item->getFileId()?>" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce fichier ?');">Supprimer</a> </h4>
+    <p><?=$item->getFileName()?></p>
+    <p><?=$item->getFileDateCreate()?></p><hr>
         <?php
         endforeach;
-        var_dump($selectAllComments);
+        var_dump($selectAllFiles);
     endif;
         ?>
     </div>
