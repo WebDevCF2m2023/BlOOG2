@@ -10,15 +10,15 @@ use Exception;
 
 class ArticleMapping extends AbstractMapping
 {
-    protected ?int $article_id;
-    protected ?string $article_title;
-    protected ?string $article_slug;
-    protected ?string $article_text;
-    protected null|string|DateTime $article_date_create;
-    protected null|string|DateTime $article_date_update;
-    protected null|string|DateTime $article_date_publish;
+    protected ?int $article_id = null;
+    protected ?string $article_title = null;
+    protected ?string $article_slug = null;
+    protected ?string $article_text = null;
+    protected null|string|DateTime $article_date_create = null;
+    protected null|string|DateTime $article_date_update = null;
+    protected null|string|DateTime $article_date_publish = null;
     protected bool $article_is_published = false;
-    protected ?int $user_user_id;
+    protected ?int $user_user_id = null;
 
     use TraitDateTime;
     use TraitSlugify;
