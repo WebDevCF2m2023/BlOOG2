@@ -21,12 +21,12 @@ if(isset($_GET['view'])&&ctype_digit($_GET['view'])){
 
     // real insert category
     if(isset($_POST['category_name'], $_POST['category_slug'], $_POST['category_description'], $_POST['category_parent']) && ctype_digit($_POST['category_parent'])) {
-        $idParent = (int) $_POST['category_parent'];
-        if($idParent !== 0){
+        $_POST['category_parent'] = (int) $_POST['category_parent'];
+        if($_POST['category_parent'] !== 0){
             $categoryParent = $categoryManager->selectOneById($_POST['category_parent']);
             $errorCategory = gettype($categoryParent) === "string";
         }
-        if($idParent === 0 || (!is_null($categoryParent) && !$errorCategory)){
+        if($_POST['category_parent'] === 0 || (!is_null($categoryParent) && !$errorCategory)){
             try{
                 // create category
                 $category = new CategoryMapping($_POST);
@@ -53,12 +53,13 @@ if(isset($_GET['view'])&&ctype_digit($_GET['view'])){
 
     // update category
     if(isset($_POST['category_name'], $_POST['category_slug'], $_POST['category_description'], $_POST['category_parent']) && ctype_digit($_POST['category_parent'])) {
-        $idParent = (int) $_POST['category_parent'];
-        if($idParent !== 0){
+        $_POST['category_parent'] = (int) $_POST['category_parent'];
+        $_POST['category_parent'] = $_POST['category_parent'] === $idCategory ? 0 : $_POST['category_parent']; // Ne peut pas etre son propre parent
+        if($_POST['category_parent'] !== 0){
             $categoryParent = $categoryManager->selectOneById($_POST['category_parent']);
             $errorCategory = gettype($categoryParent) === "string";
         }
-        if($idParent === 0 || (!is_null($categoryParent) && !$errorCategory)){
+        if($_POST['category_parent'] === 0 || (!is_null($categoryParent) && !$errorCategory)){
             try {
                 // create category
                 $category = new CategoryMapping($_POST);
