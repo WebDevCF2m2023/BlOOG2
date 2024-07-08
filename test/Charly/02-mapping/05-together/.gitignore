@@ -1,0 +1,11 @@
+# Ignore config file
+config.php
+# vendor contient les librairies externes en PHP
+/vendor
+# fichers non envoyés
+# PHPStorm
+.idea
+# VSCODE
+.vscode
+# Charly
+.history
