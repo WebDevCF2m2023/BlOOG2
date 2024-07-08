@@ -1,4 +1,7 @@
 <?php
+
+namespace model\Mapping;
+
 class Permission{
 
     /*
