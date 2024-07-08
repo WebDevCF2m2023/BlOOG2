@@ -17,6 +17,19 @@ class CategoryMapping extends AbstractMapping
     protected ?string $category_slug=null;
     protected ?string $category_description=null;
     protected ?int $category_parent=null;
+    protected ?array $children=null;
+
+    public function getChildren(): ?array
+    {
+        return $this->children;
+    }
+
+    public function setChildren(?array $children): void
+    {
+        $this->children = $children;
+    }
+
+
 
     // On utilise le trait Slugify pour générer un slug
     use TraitSlugify;

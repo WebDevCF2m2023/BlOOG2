@@ -5,7 +5,10 @@ $categoryManager = new CategoryManager($db);
 
 $categories = $categoryManager->selectAllForMenu();
 
-var_dump($categories);
+$menu = $categoryManager->buildMenu($categories);
+
 
 // exemple template
-echo $twig->render('publicView/public.homepage.html.twig');
+echo $twig->render('publicView/public.homepage.html.twig', [
+    'menu' => $menu,
+]);
