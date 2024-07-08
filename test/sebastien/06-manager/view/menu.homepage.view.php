@@ -11,62 +11,44 @@
         .navbar .navbar-collapse {
             display: none; /* Cacher le menu par défaut */
         }
+
+        /* Réduire les marges et paddings des éléments du menu */
+        .navbar-nav .nav-item {
+            margin: 0.5rem 0; /* Ajouter de la marge verticale entre les éléments */
+            padding: 0.5rem; /* Ajouter du padding à chaque élément */
+            border: 1px solid #e0e0e0; /* Bordure autour des éléments */
+            border-radius: 5px; /* Coins arrondis */
+        }
+
+        .navbar-nav .nav-item:nth-child(odd) {
+            background-color: #f8f9fa; /* Couleur de fond pour les éléments impairs */
+        }
+
+        .navbar-nav .nav-item:nth-child(even) {
+            background-color: #007bff; /* Couleur de fond pour les éléments pairs */
+            color: #ffffff; /* Couleur de texte pour les éléments pairs */
+        }
+
+        .navbar-nav .nav-link {
+            padding: 0.5rem 1rem; /* Ajuster selon vos besoins */
+            color: inherit; /* Hériter la couleur du parent */
+        }
+
+        /* Ajouter un fond et des bordures pour les éléments du menu */
+        .navbar-nav {
+            background-color: #ffffff; /* Couleur de fond du menu */
+            padding: 1rem; /* Ajouter du padding autour du menu */
+            border: 1px solid #e0e0e0; /* Bordure du menu */
+            border-radius: 5px; /* Coins arrondis */
+        }
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="./">Homepage</a>
-        <!-- Bouton burger pour les petits et grands écrans -->
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
-            aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        
+        <button class="btn btn-primary mr-auto" type="button">
+            <a class="text-white" href="./" style="text-decoration: none;">Homepage</a>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="./?route=comment">Comment</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="./?route=comment&insert">Insert Comment</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="./?route=article">Article</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="./?route=article&insert">Insert Article</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="./?route=category">Category</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="./?route=category&insert">Insert Category</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="./?route=file">File</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="./?route=file&insert">Insert File</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="./?route=permission">Permission</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="./?route=permission&insert">Insert Permission</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="./?route=tag">Tag</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="./?route=tag&insert">Insert Tag</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="./?route=user">User</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="./?route=user&insert">Insert User</a>
-                </li>
-            </ul>
-        </div>
     </nav>
 
     <!-- Bootstrap JS et dépendances -->
@@ -84,3 +66,4 @@
     </script>
 </body>
 </html>
+

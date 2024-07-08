@@ -15,7 +15,7 @@
         <?php include "menu.homepage.view.php"; ?>
         <p>Bienvenue sur la page d'accueil</p>
         <h2>CRUD des tables de la DB</h2>
-        <button class="btn btn-primary mb-3" id="toggleListButton">Afficher/Masquer la liste</button>
+        <button class="btn btn-primary mb-5" id="toggleListButton">Afficher/Masquer la liste</button>
         <div class="list-group" id="crudList" style="display: none;">
             <a href="./?route=comment" class="list-group-item list-group-item-action">Commentaires</a>
             <a href="./?route=comment&insert" class="list-group-item list-group-item-action">Insérer un Commentaire</a>
@@ -30,7 +30,7 @@
             <a href="./?route=tag" class="list-group-item list-group-item-action">Tags</a>
             <a href="./?route=tag&insert" class="list-group-item list-group-item-action">Insérer un Tag</a>
             <a href="./?route=user" class="list-group-item list-group-item-action">Utilisateurs</a>
-            <a href="./?route=user&insert" class="list-group-item list-group-item-action">Insérer un Utilisateur</a>
+            <a href="./?route=user&insert" class="list-group-item list-group-item-action mb-5">Insérer un Utilisateur</a>
         </div>
     </div>
 
