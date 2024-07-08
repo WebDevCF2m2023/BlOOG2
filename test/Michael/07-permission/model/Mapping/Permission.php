@@ -2,7 +2,10 @@
 
 namespace model\Mapping;
 
-class Permission{
+use model\Abstract\AbstractMapping;
+use Exception;
+
+class Permission extends AbstractMapping{
 
     /*
     Propriétées - équivalence de variable
@@ -20,14 +23,8 @@ class Permission{
     Méthodes
     */
 
-    // appelé lors de l'instanciation (new Permission())
-    public function __construct(int $permission_id, string $permission_name, string $permission_description)
-    {
-        // utilisation des setters
-        $this->setPermissionId($permission_id);
-        $this->setPermissionName($permission_name);
-        $this->setPermissionDescription($permission_description);
-    }
+    // Le constructeur est chargé depuis la classe abstraite (inutile de le réécrire)
+
 
     // Pour récupérer une propriété private (ou protected)
     // getters ou accessors
@@ -50,16 +47,18 @@ class Permission{
     // setters ou mutators
     public function setPermissionId(?int $permission_id): void
     {
+        // on vérifie que $permission_id est égal ou petit que 0
+        if($permission_id <= 0) throw new Exception("ID non valide");
         $this->permission_id = $permission_id;
     }
 
     public function setPermissionName(?string $permission_name): void 
     {
-        $this->permission_name = $permission_name;
+        $this->permission_name = trim(htmlspecialchars(strip_tags($permission_name), ENT_QUOTES));
     }
 
     public function setPermissionDescription(?string $permission_description): void 
     {
-        $this->permission_description = $permission_description;
+        $this->permission_description = trim(htmlspecialchars($permission_description,ENT_QUOTES));
     }
 }

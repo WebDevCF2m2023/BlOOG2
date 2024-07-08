@@ -141,4 +141,91 @@ echo $perm1->getPermissionId();
 var_dump($perm1);
 ```
 
+### Utilisation de la classe abstraite
+
+Celle-ci contient l'hydratation et le constructeur
+
+```php
+#model/Abstract/AbstractMapping.php
+# 
+<?php
+
+// Espace de nom (isolation du code)
+namespace model\Abstract;
+
+// Classe abstraite qui ne peut être instanciée.
+// Elle est la base de tous les mappings de tables
+abstract class AbstractMapping
+{
+    // constructeur - Appelé lors de l'instanciation
+    public function __construct(array $tab)
+    {
+        // tentative d'hydration des données des classes enfants
+        $this->hydrate($tab);
+    }
+
+    // création de notre hydratation, en partant d'un tableau associatif et de ses clefs,
+    // on va régénérer le nom des setters existants dans les classes enfants
+    protected function hydrate(array $assoc): void
+    {
+        // tant qu'on a des éléments dans le tableau
+        foreach ($assoc as $key => $value) {
+
+            // création du nom d'un setter (méthode publique de modification)
+            $tab = explode("_", $key);
+            $majuscule = array_map('ucfirst', $tab);
+            $newNameCamelCase = implode($majuscule);
+            $methodeName = "set" . $newNameCamelCase;
+
+            // si la méthode existe
+            if (method_exists($this, $methodeName)) {
+                // on hydrate le paramètre avec la valeur
+                $this->$methodeName($value);
+            } else {
+                // sinon, on affiche un message d'erreur (à commenter en prod)
+                echo "$methodeName n'est pas un setter valide<br>";
+            }
+        }
+    }
+}
+
+```
+
+On l'utilise dans tous nos mapping en ne redéclarant pas le constructeur: 
+
+```php
+<?php
+
+namespace model\Mapping;
+
+use model\Abstract\AbstractMapping;
+
+class Permission extends AbstractMapping{
+
+    /*
+    Propriétées - équivalence de variable
+    Porte les noms de nos champs dans la DB
+    */
+    private ?int $permission_id = null; 
+    private ?string $permission_name = null;
+    private ?string $permission_description = null;
+
+###
+
+    /*
+    Méthodes
+    */
+
+    // Le constructeur est chargé depuis la classe abstraite (inutile de le réécrire)
+
+
+    ####
+}
+
+```
+
+### Protection des données via les setters du Mapping
+
+
+
 ## CRUD de cette table
