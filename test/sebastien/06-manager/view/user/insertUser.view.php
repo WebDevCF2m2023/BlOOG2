@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exemple du ArticleManager::insert()</title>
+    <title>Exemple du UserManager::insert()</title>
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
     <div class="container mt-5">
-        <h1>Exemple du ArticleManager::insert()</h1>
+        <h1>Exemple du userManager::insert()</h1>
         <div>
             <?php
             include PROJECT_DIRECTORY."/view/menu.homepage.view.php";
@@ -19,20 +19,12 @@
         <h3>Insertion d'un article</h3>
         <form action="" method="post">
             <div class="form-group">
-            <label for="article_text">User id</label>
-                <input type="text" class="form-control" name="user_user_id" id="user_user_id" required/>
+            <label for="user_full_name">User full name</label>
+                <input type="text" class="form-control" name="user_full_name" id="user_full_name" required/>
             </div>
             <div class="form-group">
-            <label for="article_text">Title</label>
-                <input type="text" class="form-control" name="article_title" id="article_title"  required/>
-            </div>
-            <div class="form-group">
-            <label for="article_text">Slug</label>
-                <input type="text" class="form-control" name="article_slug" id="article_slug" />
-            </div>
-            <div class="form-group">
-                <label for="article_text">Article</label>
-                <textarea class="form-control" name="article_text" id="article_text" cols="30" rows="10"></textarea>
+            <label for="user_mail">user email</label>
+                <input type="text" class="form-control" name="user_mail" id="user_mail"  required/>
             </div>
             <div class="form-group">
                 <input type="submit" class="btn btn-primary" value="Envoyer">

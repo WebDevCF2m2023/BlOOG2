@@ -15,7 +15,7 @@ switch ($route) {
         require 'articleController.php';
         break;
     case 'category':
-        echo 'category à gérer';
+        require 'categoryController.php';
         break;
     # controller déjà présent
     case 'comment':
@@ -29,7 +29,7 @@ switch ($route) {
         break;
     case 'user':
         # todo
-        echo 'user à gérer';
+        require 'userController.php';
         break;
     case 'file':
         # todo
