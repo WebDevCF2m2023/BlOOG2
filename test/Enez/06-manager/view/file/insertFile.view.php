@@ -15,7 +15,7 @@
     <h3>Insertion d'un fichier</h3>
     <form action="" method="post">
         <label for="comment_text">File</label>
-        <textarea name="comment_text" id="comment_text" cols="30" rows="10"></textarea>
+        <textarea name="file_url" id="comment_text" cols="30" rows="10"></textarea>
         <input type="submit" value="Envoyer">
     </form>
 

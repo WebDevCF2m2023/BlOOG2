@@ -121,7 +121,7 @@ public function insert(AbstractMapping $mapping): bool|string
     }
 
     // requête préparée avec des placeholders
-    $sql = "INSERT INTO `user` (`user_full_name`, `user_mail`) VALUES (?, ?)";
+    $sql = "INSERT INTO `user` (`user_full_name`, `user_mail`,`permission_permission_id`) VALUES (?, ?,4)";
     $prepare = $this->connect->prepare($sql);
 
     try {

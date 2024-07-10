@@ -123,11 +123,11 @@ class FileManager implements InterfaceManager{
         }
 
         // requête préparée
-        $sql = "INSERT INTO `file`(`file_text`, `user_user_id`, `article_article_id` )  VALUES (?,1,1)";
+        $sql = "INSERT INTO `file`(`file_url`, `file_type`)  VALUES (?,'.png')";
         $prepare = $this->connect->prepare($sql);
 
         try{
-            $prepare->bindValue(1,$mapping->getFileText());
+            $prepare->bindValue(1,$mapping->getFileUrl());
 
             $prepare->execute();
 

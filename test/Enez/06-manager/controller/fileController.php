@@ -1,6 +1,5 @@
 <?php
 
-
 use model\Mapping\FileMapping;
 use model\Manager\FileManager;
 
@@ -19,7 +18,7 @@ if(isset($_GET['view'])&&ctype_digit($_GET['view'])){
 }elseif(isset($_GET['insert'])){
 
 // real insert file
-    if(isset($_POST['file_name'], $_POST["file_type"], $_POST["file_size"], $_POST["file_date_create"])) {
+    if(isset($_POST['file_url'])) {
         try{
             // create file
             $file = new FileMapping($_POST);
@@ -83,7 +82,8 @@ if(isset($_GET['view'])&&ctype_digit($_GET['view'])){
     // view all files   
 }else{  
     $files = $fileManager->selectAll();
-    require "../view/homepage.view.php";
+
+    require "../view/file/homepage.view.php";
 }   
 // close database
 $dbConnect = null;
