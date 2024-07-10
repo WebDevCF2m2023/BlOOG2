@@ -22,7 +22,7 @@ if(isset($_GET['view'])&&ctype_digit($_GET['view'])){
 }elseif(isset($_GET['insert'])){
 
 // real insert comment
-    if(isset($_POST['comment_text'], $_POST["user_user_id"], $_POST["article_article_id"])) {
+    if(isset($_POST['comment_text'])) {
         try{
             // create comment
             $comment = new CommentMapping($_POST);
@@ -44,16 +44,14 @@ if(isset($_GET['view'])&&ctype_digit($_GET['view'])){
 
     }
     // view
-    $articles = $commentManager->selectAllArticles();
-    $users = $commentManager->selectAllUser();
     require "../view/comment/insertComment.view.php";
 
-// update comment
+// delete comment
 }elseif (isset($_GET['update'])&&ctype_digit($_GET['update'])) {
     $idComment = (int)$_GET['update'];
 
     // update comment
-    if (isset($_POST['comment_text'], $_POST["user_user_id"], $_POST["article_article_id"])) {
+    if (isset($_POST['comment_text'])) {
         try {
             // create comment
             $comment = new CommentMapping($_POST);
@@ -74,8 +72,6 @@ if(isset($_GET['view'])&&ctype_digit($_GET['view'])){
     // select one comment
     $selectOneComment = $commentManager->selectOneById($idComment);
     // view
-    $articles = $commentManager->selectAllArticles();
-    $users = $commentManager->selectAllUser();
     require "../view/comment/updateComment.view.php";
 
 // delete comment
@@ -97,4 +93,3 @@ if(isset($_GET['view'])&&ctype_digit($_GET['view'])){
     // view
     require "../view/comment/selectAllComment.view.php";
 }
-
