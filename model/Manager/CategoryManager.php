@@ -85,7 +85,7 @@ public function buildMenu(array $categories, $parentId = 0)
                 // Appel récursif pour construire le sous-menu des enfants
                 $menu .= $this->buildMenu($category->getChildren(), $category->getCategoryId());
             } else {
-                // Crée un élément de menu standard pour les catégories sans enfants
+                // Crée un élément de menu standard pour les catégories sans enfantsgit
                 $menu .= "<li class='nav-item'><a class='nav-link' style='color: #1a1e21' href='?" . htmlspecialchars($category->getCategorySlug()) . "'>" . htmlspecialchars($category->getCategoryName()) . "</a>";
             }
             $menu .= "</li>";
